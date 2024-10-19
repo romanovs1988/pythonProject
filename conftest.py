@@ -12,5 +12,5 @@ def get_driver(request):
     options = webdriver.ChromeOptions()
     driver = webdriver.Chrome(service=service, options=options)
     request.cls.driver = driver
-    yield
+    yield driver
     driver.quit()

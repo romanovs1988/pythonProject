@@ -9,7 +9,7 @@ class TestSlider:
         driver = get_driver
         driver.get('https://skillbox.ru/code/')
         driver.find_element(By.CSS_SELECTOR, '[wfd-id="id23"]').click()
-        el = driver.find_element(By.XPATH, '(//div[contains(@aria-valuetext, "6")]/child::button')
+        el = driver.find_element(By.XPATH, '(//div[contains(@aria-valuetext, "6")]/child::button'))
         action_chains = webdriver.ActionChains(driver)
         action_chains \
             .click_and_hold(el) \

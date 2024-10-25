@@ -12,11 +12,15 @@ class TestInput:
     def test_input_filter(self, get_driver):
         driver = get_driver
         driver.get('https://github.com/microsoft/vscode/issues')
-        el = driver.find_element(By.CSS_SELECTOR, '[data-target="qbsearch-input.inputButton"]').send_keys('in:title')
-        value = 'in:title'
-        for el in value:
-            time.sleep(0.2)
+        time.sleep(5)
+        driver.find_element(By.CSS_SELECTOR, '[data-target="qbsearch-input.inputButton"]').send_keys('in:title')
+
+        #value = 'in:title'
+        #for el in value:
+            #time.sleep(0.2)
 
 
         driver.find_element(By.CSS_SELECTOR, '[data-target="qbsearch-input.inputButton"]').send_keys('bug' + Keys.ENTER)
+        time.sleep(5)
+
         pass

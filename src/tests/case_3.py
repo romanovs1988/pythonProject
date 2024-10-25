@@ -13,10 +13,10 @@ class TestClick:
         driver.find_element(By.CSS_SELECTOR, '[value="Python"]').click()
         driver.find_element(By.CSS_SELECTOR, '#search_stars').send_keys('>20000')
         driver.find_element(By.CSS_SELECTOR, '#search_filename').send_keys('environment.yml')
-        time.sleep(5)
+        time.sleep(20)
 
         driver.find_element(By.XPATH, '(//*[@class="btn flex-auto"])[2] ').click()
-        time.sleep(5)
+        time.sleep(20)
 
         pass
 

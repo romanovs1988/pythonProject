@@ -9,22 +9,24 @@ class TestSlider:
         driver = get_driver
         driver.get('https://skillbox.ru/code/')
         time.sleep(5)
-        driver.find_element(By.XPATH, '(//input[contains(@value, "profession")])').click()
-        el = driver.find_element(By.XPATH, '(//div[contains(@aria-valuetext, "1")]/child::button)')
+        driver.find_element(By.CSS_SELECTOR, '#employment').click()
+        driver.find_element(By.CSS_SELECTOR, '[aria-label="Вернуться наверх страницы"]').click()
+        #driver.find_element(By.XPATH, '(//label[contains(@value, "profession")])').click()
+        """el = driver.find_element(By.XPATH, '//div[contains(@aria-valuetext, "1")]')
         action_chains = webdriver.ActionChains(driver)
         action_chains \
             .click_and_hold(el) \
             .move_by_offset(xoffset=5, yoffset=0) \
             .perform()
-        action_chains.release().perform()
-        el = driver.find_element(By.XPATH, '(//div[contains(@aria-valuetext, "24")]/child::button)')
+        action_chains.release().perform()"""
+        """el = driver.find_element(By.XPATH, '//div[contains(@aria-valuetext, "24")]')
         action_chains = webdriver.ActionChains(driver)
         action_chains \
             .click_and_hold(el) \
             .move_by_offset(xoffset=-12, yoffset=0) \
             .perform()
-        action_chains.release().perform()
-        driver.find_element(By.XPATH, '//span[contains(text(), "Android")]').click()
+        action_chains.release().perform()"""
+        #driver.find_element(By.XPATH, '(//span[contains(text(), "Android")]/ancestor::label)').click()
         pass
 
 

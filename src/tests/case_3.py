@@ -15,7 +15,7 @@ class TestClick:
         time.sleep(5)
         driver.find_element(By.CSS_SELECTOR, '[value="Python"]').click()
         time.sleep(5)
-        driver.find_element(By.CSS_SELECTOR, '#search_stars').send_keys('>1000')
+        driver.find_element(By.CSS_SELECTOR, '#search_stars').send_keys('>20000')
 
         driver.find_element(By.CSS_SELECTOR, '#search_filename').send_keys('environment.yml')
 

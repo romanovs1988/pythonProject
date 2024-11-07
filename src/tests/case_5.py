@@ -10,5 +10,5 @@ class TestCharts:
         driver.get('https://github.com/microsoft/vscode/graphs/commit-activity')
         action_chains = webdriver.ActionChains(driver)
         time.sleep(13)
-        action_chains.move_to_element(driver.find_element(By.XPATH, '//*[@class="bar mini active"]')).perform()
+        action_chains.move_to_element(driver.find_element(By.CSS_SELECTOR, '[y="0"]')).perform()
         pass

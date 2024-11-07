@@ -1,11 +1,17 @@
+from telnetlib import EC
+
+from selenium.webdriver.support import wait
+from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.chrome import webdriver
 from selenium.webdriver.common.by import By
+
 from selenium.webdriver.support.expected_conditions import element_attribute_to_include
 from selenium.common import StaleElementReferenceException
 from selenium.webdriver.common.by import By
 import time
 from selenium.webdriver import Keys
 from conftest import get_driver
+from selenium import webdriver
 
 class TestValidate:
     def test_1(self, get_driver):
@@ -78,11 +84,14 @@ class TestValidate:
         driver = get_driver
         driver.get('https://github.com/microsoft/vscode/graphs/commit-activity')
         action_chains = webdriver.ActionChains(driver)
-        time.sleep(13)
-        bar = action_chains.move_to_element(driver.find_element(By.CSS_SELECTOR, '[y="0"]'))
-        bar.perform()
+        time.sleep(5)
 
-        assert bar.is_selected() is True
+        action_chains.move_to_element(driver.find_element(By.CSS_SELECTOR, '[y="0"]')).perform()
+        action_chains.move_by_offset(80, 0).perform()
+        #wait.until(EC.visibility_of_element_located(By.CSS_SELECTOR, '[y="0"]'))
+        wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, '[y="0"]')))
+
+       # assert bar.is_selected() is True
         pass
 
 

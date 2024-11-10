@@ -86,10 +86,10 @@ class TestValidate:
         action_chains = webdriver.ActionChains(driver)
         time.sleep(5)
 
-        action_chains.move_to_element(driver.find_element(By.CSS_SELECTOR, '[y="0"]')).perform()
-        action_chains.move_by_offset(80, 0).perform()
+        action_chains.move_to_element(driver.find_element(By.ID, 'commit-activity-master')).perform()
+        action_chains.move_by_offset(-100, 0).perform()
         #wait.until(EC.visibility_of_element_located(By.CSS_SELECTOR, '[y="0"]'))
-        wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, '[y="0"]')))
+        wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, '[transform="translate(280, 0)"]')))
 
        # assert bar.is_selected() is True
         pass

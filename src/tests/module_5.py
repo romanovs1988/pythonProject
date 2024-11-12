@@ -1,4 +1,4 @@
-from telnetlib import EC
+from selenium.webdriver.support import expected_conditions as EC
 
 from selenium.webdriver.support import wait
 from selenium.webdriver.support.wait import WebDriverWait
@@ -88,10 +88,13 @@ class TestValidate:
 
         action_chains.move_to_element(driver.find_element(By.ID, 'commit-activity-master')).perform()
         action_chains.move_by_offset(-100, 0).perform()
-        #wait.until(EC.visibility_of_element_located(By.CSS_SELECTOR, '[y="0"]'))
+        tooltip = driver.find_element(By.XPATH,  '//div[@class="svg-tip n"]')
+        tooltip_text = '380 commits the week of Mar 17'
+        assert tooltip_text in tooltip.text == '380 commits the week of Mar 17'
+
         wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, '[transform="translate(280, 0)"]')))
 
-       # assert bar.is_selected() is True
+
         pass
 
 

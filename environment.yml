@@ -9,3 +9,5 @@ dependencies:
   - pip:
       - webdriver-manager==4.0.2
   - pytest
+  - allure-pytest
+  - flake8

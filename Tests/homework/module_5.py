@@ -10,20 +10,20 @@ from selenium.common import StaleElementReferenceException
 from selenium.webdriver.common.by import By
 import time
 from selenium.webdriver import Keys
-# from conftest import get_driver
+from conftest import get_driver
 from selenium import webdriver
 
 
 class TestValidate:
-    def test_1(self, selenium, new_fixture):
-
+    def test_1(self, get_driver, new_fixture):
+        driver = get_driver
         expected_value = ' bug' or ' Bug'
 
-        selenium.get('https://github.com/microsoft/vscode/issues')
+        driver.get('https://github.com/microsoft/vscode/issues')
         time.sleep(5)
-        selenium.find_element(By.CSS_SELECTOR, '#repository-input').send_keys('in:title')
+        driver.find_element(By.CSS_SELECTOR, '#repository-input').send_keys('in:title')
         time.sleep(5)
-        field = selenium.find_element(By.CSS_SELECTOR, '#repository-input')
+        field = driver.find_element(By.CSS_SELECTOR, '#repository-input')
         field.send_keys(expected_value + Keys.ENTER)
         time.sleep(5)
         assert field.get_attribute('value') == ' bug' or ' Bug'

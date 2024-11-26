@@ -1,11 +1,6 @@
 import time
-from telnetlib import EC
-
-from requests import request
-from selenium import webdriver
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
 
 from conftest import get_driver
 

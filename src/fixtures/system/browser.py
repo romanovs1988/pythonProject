@@ -7,7 +7,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 @pytest.fixture()
-def selenium(pytestconfig):
+def get_driver(pytestconfig):
     service = Service(executable_path=ChromeDriverManager().install())
     options = webdriver.ChromeOptions()
     browser_name = pytestconfig.getini("browser_name")
@@ -22,7 +22,7 @@ def selenium(pytestconfig):
             "browserName": pytestconfig.getini("browser_name"),
             "browserVersion": pytestconfig.getini("browser_version")
         },
-        command_executor=pytestconfig.getini("selenium_url"),
+        command_executor=pytestconfig.getini("get_driver_url"),
         options=options
     )
     logging.info(f'Browser {browser_name} has been started...')

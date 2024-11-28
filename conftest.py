@@ -17,17 +17,17 @@ pytest_plugins = [
 
 
 def pytest_addoption(parser):
-    parser.addini("selenium_url", "Selenium Hub url")
+    parser.addini("get_driver_url", "Get_driver Hub url")
     parser.addini("browser_name", "Browser name for tests")
     parser.addini("browser_version", "Browser version for tests")
     parser.addini("headless", "Run browser in headless mode")
 
 
-@pytest.fixture(autouse=True)
+"""@pytest.fixture(autouse=True)
 def get_driver(request):
     service = Service(executable_path=ChromeDriverManager().install())
     options = webdriver.ChromeOptions()
     driver = webdriver.Chrome(service=service, options=options)
     request.cls.driver = driver
     yield driver
-    driver.quit()
+    driver.quit()"""

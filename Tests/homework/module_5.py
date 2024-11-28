@@ -23,12 +23,12 @@ class TestValidate:
         assert field.get_attribute('value') == ' bug' or ' Bug'
         pass
 
-    def test_2(self, selenium):
+    def test_2(self, get_driver):
 
         expected_value = 'bpasero'
-        selenium.get('https://github.com/microsoft/vscode/issues')
-        selenium.find_element(By.CSS_SELECTOR, '[aria-label="Filter by author"]').click()
-        field = selenium.find_element(By.XPATH, '//*[contains(@class, "UnstyledTextInput-sc-14ypya-0 kbCLEG")]')
+        get_driver.get('https://github.com/microsoft/vscode/issues')
+        get_driver.find_element(By.CSS_SELECTOR, '[aria-label="Filter by author"]').click()
+        field = get_driver.find_element(By.XPATH, '//*[contains(@class, "UnstyledTextInput-sc-14ypya-0 kbCLEG")]')
         field.send_keys(expected_value + Keys.ENTER)
         assert field.get_attribute('value') == 'bpasero'
 

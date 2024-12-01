@@ -23,11 +23,11 @@ def pytest_addoption(parser):
     parser.addini("headless", "Run browser in headless mode")
 
 
-"""@pytest.fixture(autouse=True)
-def get_driver(request):
+"""@pytest.fixture()
+def get_driver(pytestconfig):
     service = Service(executable_path=ChromeDriverManager().install())
     options = webdriver.ChromeOptions()
     driver = webdriver.Chrome(service=service, options=options)
-    request.cls.driver = driver
+    #request.cls.driver = driver
     yield driver
     driver.quit()"""

@@ -1,5 +1,7 @@
 import time
+import logging
 
+import allure
 from selenium import webdriver
 from selenium.webdriver import Keys
 from selenium.webdriver.chrome import webdriver
@@ -7,8 +9,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support import wait
 
-
+@allure.feature('Full Accounts')
+@allure.story('Waiting page load')
 class TestValidate:
+    @allure.title('Проверка загрузки страницы')
     def test_1(self, get_driver, new_fixture):
         driver = get_driver
         expected_value = ' bug' or ' Bug'

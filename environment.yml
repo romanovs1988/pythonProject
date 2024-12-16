@@ -11,3 +11,4 @@ dependencies:
   - pytest
   - allure-pytest
   - flake8
+  - pytest-playwright

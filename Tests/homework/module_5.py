@@ -84,12 +84,30 @@ class TestValidate:
             page.click('(//*[contains\
             (@class, "ui-radio-field__value ui-radio-field__value--small")])[2]')
             page.wait_for_timeout(3000)
-        with allure.step('Переместить slider_1'):
-            duration_slider_1 = page.locator('//*[contains(@aria-valuetext, "1")]')
-            duration_slider_1.evaluate("el => el.setAttribute('style', 'right: 30%;')")
-        with allure.step('Переместить slider_2'):
-            duration_slider_2 = page.locator('//*[contains(@aria-valuetext, "24")]')
-            duration_slider_2.evaluate("el => el.setAttribute('style', 'left: 30%;')")
+        with allure.step('Переместить slider_handle_1, slider_handle_2'):
+            slider_handle_1 = page.locator('(//*[@class="ui-range__dot"])[1]')  # Замените на селектор вашего ползунка
+            slider_handle_1.hover()
+            slider_handle_1.click()  # Если нужно кликнуть
+            page.mouse.down()
+            page.mouse.move(100, 0)  # Зафиксируем движение
+            page.mouse.up()
+            time.sleep(5)
+
+            slider_handle_2 = page.locator('(//*[@class="ui-range__dot"])[2]')
+            slider_handle_2.hover()
+            slider_handle_2.click()  # Если нужно кликнуть
+            page.mouse.down()
+            page.mouse.move(0, 0)  # Зафиксируем движение
+            page.mouse.up()
+            time.sleep(5)
+
+            slider_handle_1 = page.locator('(//*[@class="ui-range__dot"])[1]')  # Замените на селектор вашего ползунка
+            slider_handle_1.hover()
+            slider_handle_1.click()  # Если нужно кликнуть
+            page.mouse.down()
+            page.mouse.move(100, 0)  # Зафиксируем движение
+            page.mouse.up()
+            time.sleep(5)
         with allure.step('Клик по найденному элементу'):
             page.click('//*[@id="#app"]/main/div[1]/div[2]/div/div[1]/div[1]/div[6]/button')
         with allure.step('Клик по чекбоксу'):

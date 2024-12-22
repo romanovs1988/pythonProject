@@ -85,11 +85,11 @@ class TestValidate:
             (@class, "ui-radio-field__value ui-radio-field__value--small")])[2]')
             page.wait_for_timeout(3000)
         with allure.step('Переместить slider_handle_1, slider_handle_2'):
-            slider_handle_1 = page.locator('(//*[@class="ui-range__dot"])[1]')  # Замените на селектор вашего ползунка
+            slider_handle_1 = page.locator('(//*[@class="ui-range__dot"])[1]')
             slider_handle_1.hover()
-            slider_handle_1.click()  # Если нужно кликнуть
+            slider_handle_1.click()
             page.mouse.down()
-            page.mouse.move(100, 0)  # Зафиксируем движение
+            page.mouse.move(100, 0)
             page.mouse.up()
             time.sleep(5)
 

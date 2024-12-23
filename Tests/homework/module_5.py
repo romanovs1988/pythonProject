@@ -85,13 +85,6 @@ class TestValidate:
             (@class, "ui-radio-field__value ui-radio-field__value--small")])[2]')
             page.wait_for_timeout(3000)
         with allure.step('Переместить slider_handle_1, slider_handle_2'):
-            slider_handle_1 = page.locator('(//*[@class="ui-range__dot"])[1]')
-            slider_handle_1.hover()
-            slider_handle_1.click()
-            page.mouse.down()
-            page.mouse.move(100, 0)
-            page.mouse.up()
-            time.sleep(5)
 
             slider_handle_2 = page.locator('(//*[@class="ui-range__dot"])[2]')
             slider_handle_2.hover()
@@ -112,11 +105,13 @@ class TestValidate:
             page.click('//*[@id="#app"]/main/div[1]/div[2]/div/div[1]/div[1]/div[6]/button')
         with allure.step('Клик по чекбоксу'):
             page.click('(//*[contains(@class, "filter-checkboxes-list__value")])[28]')
+            time.sleep(5)
         with allure.step('Проверка, что курсы соответствуют ожиданиям'):
             expected_courses = ["DevOps-инженер", "DevOps-инженер"]
-            course_titles = page.locator(".courses-section__grid").all_inner_texts()
-            for expected_course in expected_courses:
-                assert expected_course in course_titles, f"DevOps-инженер '{expected_course}' не найден в списке."
+            courses = page.locator('//*[@class="ui-product-card-main__wrap"]').all_inner_texts()
+
+            for expected in expected_courses:
+                assert expected in courses, f"Ожидалось увидеть курс '{expected}', но он не найден."
         pass
 
     def test_5(self, page):

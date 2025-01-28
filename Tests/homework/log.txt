@@ -1,0 +1,12 @@
+[INFO][2025-01-28 18:33:13,900][WDM] ====== WebDriver manager ======
+[INFO][2025-01-28 18:33:15,652][WDM] Get LATEST chromedriver version for google-chrome
+[DEBUG][2025-01-28 18:33:15,670][urllib3.connectionpool] Starting new HTTPS connection (1): googlechromelabs.github.io:443
+[DEBUG][2025-01-28 18:33:17,195][urllib3.connectionpool] https://googlechromelabs.github.io:443 "GET /chrome-for-testing/latest-patch-versions-per-build.json HTTP/1.1" 200 9404
+[INFO][2025-01-28 18:33:17,255][WDM] Get LATEST chromedriver version for google-chrome
+[DEBUG][2025-01-28 18:33:17,266][urllib3.connectionpool] Starting new HTTPS connection (1): googlechromelabs.github.io:443
+[DEBUG][2025-01-28 18:33:18,823][urllib3.connectionpool] https://googlechromelabs.github.io:443 "GET /chrome-for-testing/latest-patch-versions-per-build.json HTTP/1.1" 200 9404
+[INFO][2025-01-28 18:33:18,947][WDM] Get LATEST chromedriver version for google-chrome
+[DEBUG][2025-01-28 18:33:18,957][urllib3.connectionpool] Starting new HTTPS connection (1): googlechromelabs.github.io:443
+[DEBUG][2025-01-28 18:33:20,470][urllib3.connectionpool] https://googlechromelabs.github.io:443 "GET /chrome-for-testing/latest-patch-versions-per-build.json HTTP/1.1" 200 9404
+[DEBUG][2025-01-28 18:33:20,539][urllib3.connectionpool] Starting new HTTPS connection (1): googlechromelabs.github.io:443
+[DEBUG][2025-01-28 18:33:22,086][urllib3.connectionpool] https://googlechromelabs.github.io:443 "GET /chrome-for-testing/known-good-versions-with-downloads.json HTTP/1.1" 200 75979

@@ -1,9 +1,10 @@
 import re
 import time
+from lib2to3.pgen2 import driver
 from winreg import DeleteValue
 import requests
 from urllib3.util import proxy
-
+from selenium.webdriver.common.alert import Alert
 from src.actions.adds import add_pizza
 from src.actions.authorization import authorization
 from src.actions.forms import fill_forms
@@ -16,6 +17,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support import wait
 from selenium.webdriver.common.keys import Keys
+from browsermobproxy import Server
 
 
 @allure.feature('Full Accounts')
@@ -253,12 +255,13 @@ class TestValidate:
 
         pass
 
-    def test_apply_promo_code_3(self, get_driver):
+    def test_apply_promo_code_3(self, get_driver, send_500_response):
         with allure.step('Переход на страницу https://pizzeria.skillbox.cc/'):
+
             get_driver.get('https://pizzeria.skillbox.cc/')
             time.sleep(3)
         with allure.step('Добавить пиццу "Ветчина и грибы" в "Корзину"'):
-            add_pizza(get_driver)
+            get_driver.find_element(By.XPATH, '(//*[contains(@data-product_id, "419")])[2]').click()
             time.sleep(3)
         with allure.step('Перейдите в окно оформления товаров.'):
             get_driver.find_element(By.XPATH, '//*[@class="cart-contents wcmenucart-contents"]').click()
@@ -266,11 +269,10 @@ class TestValidate:
         with allure.step('Примените промокод GIVEMEHALYAVA.'):
             get_driver.find_element(By.CSS_SELECTOR, '#coupon_code').send_keys('GIVEMEHALYAVA')
             time.sleep(3)
-            return 'https://pizzeria.skillbox.cc/', 500
-        # with allure.step('Перехватите запрос, уходящий с веба на сервер, и заблокируйте его. Вернуть ответ с ошибкой (500).'):
-        #     # noinspection PyTypeChecker
-        #     # requests.get('https://pizzeria.skillbox.cc/cart/', 500)
-        #     return 'https://pizzeria.skillbox.cc/', 500
+            get_driver.find_element(By.XPATH, '//*[@name="apply_coupon"]').click()
+
+        with allure.step('Перехватите запрос, уходящий с веба на сервер, и заблокируйте его. Вернуть ответ с ошибкой (500).'):
+            send_500_response(get_driver)
 
         pass
 
@@ -328,10 +330,53 @@ class TestValidate:
         with allure.step('Нажать "Оформить карту"'):
             get_driver.find_element(By.XPATH, '//*[@style="cursor:pointer;"]').click()
             time.sleep(3)
-
-            action_chains = webdriver.Action.Chains(get_driver)
-            action_chains.
+            alert = Alert(get_driver)
+            alert.accept()
             time.sleep(3)
+        with allure.step('Убедиться в успешной активации данных.'):
+            bonus = get_driver.find_element(By.XPATH, '//div/div/h3')
+            assert 'Ваша карта оформлена!' in bonus.text
+
+        pass
+
+    def test_bonus_program_2(self, get_driver):
+        with allure.step('Перейдите на страницу бонусной программы: https://pizzeria.skillbox.cc/bonus/'):
+            get_driver.get('https://pizzeria.skillbox.cc/bonus/')
+            time.sleep(3)
+        with allure.step('Ввести "1" в поле "Имя"'):
+            get_driver.find_element(By.CSS_SELECTOR, '#bonus_username').send_keys('1')
+            time.sleep(3)
+        with allure.step('Ввести +79971234567 в поле "Телефон"'):
+            get_driver.find_element(By.CSS_SELECTOR, '#bonus_phone').send_keys('+79971234567')
+            time.sleep(3)
+        with allure.step('Нажать "Оформить карту"'):
+            get_driver.find_element(By.XPATH, '//*[@style="cursor:pointer;"]').click()
+            time.sleep(3)
+        with allure.step('Убедиться, что отображается надпись "Введен неверный формат имени'):
+            name_field = get_driver.find_element(By.XPATH, '//*[@id="bonus_content"]')
+            assert 'Введен неверный формат имени' in name_field.text
+
+        pass
+
+    def test_bonus_program_3(self, get_driver):
+        with allure.step('Перейдите на страницу бонусной программы: https://pizzeria.skillbox.cc/bonus/'):
+            get_driver.get('https://pizzeria.skillbox.cc/bonus/')
+            time.sleep(3)
+        with allure.step('Ввести "Андрей" в поле "Имя"'):
+            get_driver.find_element(By.CSS_SELECTOR, '#bonus_username').send_keys('Андрей')
+            time.sleep(3)
+        with allure.step('Ввести +7 в поле "Телефон"'):
+            get_driver.find_element(By.CSS_SELECTOR, '#bonus_phone').send_keys('+7')
+            time.sleep(3)
+        with allure.step('Нажать "Оформить карту"'):
+            get_driver.find_element(By.XPATH, '//*[@style="cursor:pointer;"]').click()
+            time.sleep(3)
+        with allure.step('Убедиться, что отображается надпись "Введен неверный формат телефона'):
+            name_field = get_driver.find_element(By.XPATH, '//*[@id="bonus_content"]')
+            assert 'Введен неверный формат телефона' in name_field.text
+
+        pass
+
 
 
 

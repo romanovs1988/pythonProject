@@ -1,4 +1,6 @@
 import logging
+import time
+import psutil
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -52,8 +54,10 @@ def go_to_url(page):
 
 @pytest.fixture()
 def send_500_response():
-    server = Server(r"C:\Program Files (x86)\browsermob-proxy-2.1.4-bin")
+
+    server = Server(r"C:\Program Files (x86)\browsermob-proxy-2.1.4-bin\browsermob-proxy-2.1.4\bin\browsermob-proxy.bat")
     server.start()
+    time.sleep(3)
     proxy = server.create_proxy()
     options = webdriver.ChromeOptions()
     options.add_argument(f'--proxy-server={proxy.proxy}')
@@ -66,6 +70,6 @@ def send_500_response():
             proxy.rewrite_url(request_url, "https://pizzeria.skillbox.cc/cart/500")
             proxy.add_header(request_url, "HTTP/1.1 500 Internal Server Error")
 
-    yield driver
-    driver.quit()
     server.stop()
+    driver.quit()
+

@@ -1,21 +1,21 @@
-[INFO][2025-01-28 19:27:56,789][WDM] ====== WebDriver manager ======
-[INFO][2025-01-28 19:27:58,517][WDM] Get LATEST chromedriver version for google-chrome
-[DEBUG][2025-01-28 19:27:58,538][urllib3.connectionpool] Starting new HTTPS connection (1): googlechromelabs.github.io:443
-[DEBUG][2025-01-28 19:27:58,875][urllib3.connectionpool] https://googlechromelabs.github.io:443 "GET /chrome-for-testing/latest-patch-versions-per-build.json HTTP/1.1" 200 9404
-[INFO][2025-01-28 19:27:58,886][WDM] Get LATEST chromedriver version for google-chrome
-[DEBUG][2025-01-28 19:27:58,897][urllib3.connectionpool] Starting new HTTPS connection (1): googlechromelabs.github.io:443
-[DEBUG][2025-01-28 19:27:59,110][urllib3.connectionpool] https://googlechromelabs.github.io:443 "GET /chrome-for-testing/latest-patch-versions-per-build.json HTTP/1.1" 200 9404
-[INFO][2025-01-28 19:27:59,142][WDM] Driver [C:\Users\Serjan777\.wdm\drivers\chromedriver\win64\131.0.6778.264\chromedriver-win32/chromedriver.exe] found in cache
-[DEBUG][2025-01-28 19:27:59,143][selenium.webdriver.common.driver_finder] Skipping Selenium Manager; path to chrome driver specified in Service class: C:\Users\Serjan777\.wdm\drivers\chromedriver\win64\131.0.6778.264\chromedriver-win32/chromedriver.exe
-[DEBUG][2025-01-28 19:27:59,178][selenium.webdriver.common.service] Started executable: `C:\Users\Serjan777\.wdm\drivers\chromedriver\win64\131.0.6778.264\chromedriver-win32/chromedriver.exe` in a child process with pid: 16080 using 0 to output -3
-[DEBUG][2025-01-28 19:27:59,692][selenium.webdriver.remote.remote_connection] POST http://localhost:59651/session {'capabilities': {'firstMatch': [{}], 'alwaysMatch': {'browserName': 'chrome', 'pageLoadStrategy': <PageLoadStrategy.normal: 'normal'>, 'goog:chromeOptions': {'extensions': [], 'args': []}}}}
-[DEBUG][2025-01-28 19:27:59,695][urllib3.connectionpool] Starting new HTTP connection (1): localhost:59651
-[DEBUG][2025-01-28 19:28:01,305][urllib3.connectionpool] http://localhost:59651 "POST /session HTTP/1.1" 200 0
-[DEBUG][2025-01-28 19:28:01,306][selenium.webdriver.remote.remote_connection] Remote response: status=200 | data={"value":{"capabilities":{"acceptInsecureCerts":false,"browserName":"chrome","browserVersion":"131.0.6778.265","chrome":{"chromedriverVersion":"131.0.6778.264 (2d05e31515360f4da764174f7c448b33e36da871-refs/branch-heads/6778@{#4323})","userDataDir":"C:\\Users\\SERJAN~1\\AppData\\Local\\Temp\\scoped_dir16080_1594155880"},"fedcm:accounts":true,"goog:chromeOptions":{"debuggerAddress":"localhost:59654"},"networkConnectionEnabled":false,"pageLoadStrategy":"normal","platformName":"windows","proxy":{},"setWindowRect":true,"strictFileInteractability":false,"timeouts":{"implicit":0,"pageLoad":300000,"script":30000},"unhandledPromptBehavior":"dismiss and notify","webauthn:extension:credBlob":true,"webauthn:extension:largeBlob":true,"webauthn:extension:minPinLength":true,"webauthn:extension:prf":true,"webauthn:virtualAuthenticators":true},"sessionId":"14f8556c0e62d76fb6d93f9eb43b4e07"}} | headers=HTTPHeaderDict({'Content-Length': '887', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
-[DEBUG][2025-01-28 19:28:01,307][selenium.webdriver.remote.remote_connection] Finished Request
-[INFO][2025-01-28 19:28:01,308][root] Prepare "chrome" browser...
-[INFO][2025-01-28 19:28:01,309][root] Browser "chrome" has been started...
-[DEBUG][2025-01-28 19:28:01,770][selenium.webdriver.remote.remote_connection] DELETE http://localhost:59651/session/14f8556c0e62d76fb6d93f9eb43b4e07 {}
-[DEBUG][2025-01-28 19:28:01,841][urllib3.connectionpool] http://localhost:59651 "DELETE /session/14f8556c0e62d76fb6d93f9eb43b4e07 HTTP/1.1" 200 0
-[DEBUG][2025-01-28 19:28:01,842][selenium.webdriver.remote.remote_connection] Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
-[DEBUG][2025-01-28 19:28:01,843][selenium.webdriver.remote.remote_connection] Finished Request
+[INFO][2025-01-30 19:45:31,515][WDM] ====== WebDriver manager ======
+[INFO][2025-01-30 19:45:32,946][WDM] Get LATEST chromedriver version for google-chrome
+[DEBUG][2025-01-30 19:45:32,963][urllib3.connectionpool] Starting new HTTPS connection (1): googlechromelabs.github.io:443
+[DEBUG][2025-01-30 19:45:33,206][urllib3.connectionpool] https://googlechromelabs.github.io:443 "GET /chrome-for-testing/latest-patch-versions-per-build.json HTTP/1.1" 200 9433
+[INFO][2025-01-30 19:45:33,214][WDM] Get LATEST chromedriver version for google-chrome
+[DEBUG][2025-01-30 19:45:33,225][urllib3.connectionpool] Starting new HTTPS connection (1): googlechromelabs.github.io:443
+[DEBUG][2025-01-30 19:45:33,445][urllib3.connectionpool] https://googlechromelabs.github.io:443 "GET /chrome-for-testing/latest-patch-versions-per-build.json HTTP/1.1" 200 9433
+[INFO][2025-01-30 19:45:33,467][WDM] Driver [C:\Users\Serjan777\.wdm\drivers\chromedriver\win64\132.0.6834.159\chromedriver-win32/chromedriver.exe] found in cache
+[DEBUG][2025-01-30 19:45:33,468][selenium.webdriver.common.driver_finder] Skipping Selenium Manager; path to chrome driver specified in Service class: C:\Users\Serjan777\.wdm\drivers\chromedriver\win64\132.0.6834.159\chromedriver-win32/chromedriver.exe
+[DEBUG][2025-01-30 19:45:33,486][selenium.webdriver.common.service] Started executable: `C:\Users\Serjan777\.wdm\drivers\chromedriver\win64\132.0.6834.159\chromedriver-win32/chromedriver.exe` in a child process with pid: 2176 using 0 to output -3
+[DEBUG][2025-01-30 19:45:34,000][selenium.webdriver.remote.remote_connection] POST http://localhost:51947/session {'capabilities': {'firstMatch': [{}], 'alwaysMatch': {'browserName': 'chrome', 'pageLoadStrategy': <PageLoadStrategy.normal: 'normal'>, 'goog:chromeOptions': {'extensions': [], 'args': []}}}}
+[DEBUG][2025-01-30 19:45:34,002][urllib3.connectionpool] Starting new HTTP connection (1): localhost:51947
+[DEBUG][2025-01-30 19:45:34,633][urllib3.connectionpool] http://localhost:51947 "POST /session HTTP/1.1" 200 0
+[DEBUG][2025-01-30 19:45:34,635][selenium.webdriver.remote.remote_connection] Remote response: status=200 | data={"value":{"capabilities":{"acceptInsecureCerts":false,"browserName":"chrome","browserVersion":"132.0.6834.160","chrome":{"chromedriverVersion":"132.0.6834.159 (2d77d3fc4452661469b78f115e0aed4d71269739-refs/branch-heads/6834@{#4408})","userDataDir":"C:\\Users\\SERJAN~1\\AppData\\Local\\Temp\\scoped_dir2176_1989047229"},"fedcm:accounts":true,"goog:chromeOptions":{"debuggerAddress":"localhost:51950"},"networkConnectionEnabled":false,"pageLoadStrategy":"normal","platformName":"windows","proxy":{},"setWindowRect":true,"strictFileInteractability":false,"timeouts":{"implicit":0,"pageLoad":300000,"script":30000},"unhandledPromptBehavior":"dismiss and notify","webauthn:extension:credBlob":true,"webauthn:extension:largeBlob":true,"webauthn:extension:minPinLength":true,"webauthn:extension:prf":true,"webauthn:virtualAuthenticators":true},"sessionId":"11c0a8912c7f541226d97830d0adf040"}} | headers=HTTPHeaderDict({'Content-Length': '886', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+[DEBUG][2025-01-30 19:45:34,636][selenium.webdriver.remote.remote_connection] Finished Request
+[INFO][2025-01-30 19:45:34,637][root] Prepare "chrome" browser...
+[INFO][2025-01-30 19:45:34,638][root] Browser "chrome" has been started...
+[DEBUG][2025-01-30 19:45:36,181][selenium.webdriver.remote.remote_connection] DELETE http://localhost:51947/session/11c0a8912c7f541226d97830d0adf040 {}
+[DEBUG][2025-01-30 19:45:36,223][urllib3.connectionpool] http://localhost:51947 "DELETE /session/11c0a8912c7f541226d97830d0adf040 HTTP/1.1" 200 0
+[DEBUG][2025-01-30 19:45:36,224][selenium.webdriver.remote.remote_connection] Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+[DEBUG][2025-01-30 19:45:36,225][selenium.webdriver.remote.remote_connection] Finished Request

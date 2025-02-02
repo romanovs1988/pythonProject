@@ -1,21 +1,82 @@
-[INFO][2025-01-30 19:45:31,515][WDM] ====== WebDriver manager ======
-[INFO][2025-01-30 19:45:32,946][WDM] Get LATEST chromedriver version for google-chrome
-[DEBUG][2025-01-30 19:45:32,963][urllib3.connectionpool] Starting new HTTPS connection (1): googlechromelabs.github.io:443
-[DEBUG][2025-01-30 19:45:33,206][urllib3.connectionpool] https://googlechromelabs.github.io:443 "GET /chrome-for-testing/latest-patch-versions-per-build.json HTTP/1.1" 200 9433
-[INFO][2025-01-30 19:45:33,214][WDM] Get LATEST chromedriver version for google-chrome
-[DEBUG][2025-01-30 19:45:33,225][urllib3.connectionpool] Starting new HTTPS connection (1): googlechromelabs.github.io:443
-[DEBUG][2025-01-30 19:45:33,445][urllib3.connectionpool] https://googlechromelabs.github.io:443 "GET /chrome-for-testing/latest-patch-versions-per-build.json HTTP/1.1" 200 9433
-[INFO][2025-01-30 19:45:33,467][WDM] Driver [C:\Users\Serjan777\.wdm\drivers\chromedriver\win64\132.0.6834.159\chromedriver-win32/chromedriver.exe] found in cache
-[DEBUG][2025-01-30 19:45:33,468][selenium.webdriver.common.driver_finder] Skipping Selenium Manager; path to chrome driver specified in Service class: C:\Users\Serjan777\.wdm\drivers\chromedriver\win64\132.0.6834.159\chromedriver-win32/chromedriver.exe
-[DEBUG][2025-01-30 19:45:33,486][selenium.webdriver.common.service] Started executable: `C:\Users\Serjan777\.wdm\drivers\chromedriver\win64\132.0.6834.159\chromedriver-win32/chromedriver.exe` in a child process with pid: 2176 using 0 to output -3
-[DEBUG][2025-01-30 19:45:34,000][selenium.webdriver.remote.remote_connection] POST http://localhost:51947/session {'capabilities': {'firstMatch': [{}], 'alwaysMatch': {'browserName': 'chrome', 'pageLoadStrategy': <PageLoadStrategy.normal: 'normal'>, 'goog:chromeOptions': {'extensions': [], 'args': []}}}}
-[DEBUG][2025-01-30 19:45:34,002][urllib3.connectionpool] Starting new HTTP connection (1): localhost:51947
-[DEBUG][2025-01-30 19:45:34,633][urllib3.connectionpool] http://localhost:51947 "POST /session HTTP/1.1" 200 0
-[DEBUG][2025-01-30 19:45:34,635][selenium.webdriver.remote.remote_connection] Remote response: status=200 | data={"value":{"capabilities":{"acceptInsecureCerts":false,"browserName":"chrome","browserVersion":"132.0.6834.160","chrome":{"chromedriverVersion":"132.0.6834.159 (2d77d3fc4452661469b78f115e0aed4d71269739-refs/branch-heads/6834@{#4408})","userDataDir":"C:\\Users\\SERJAN~1\\AppData\\Local\\Temp\\scoped_dir2176_1989047229"},"fedcm:accounts":true,"goog:chromeOptions":{"debuggerAddress":"localhost:51950"},"networkConnectionEnabled":false,"pageLoadStrategy":"normal","platformName":"windows","proxy":{},"setWindowRect":true,"strictFileInteractability":false,"timeouts":{"implicit":0,"pageLoad":300000,"script":30000},"unhandledPromptBehavior":"dismiss and notify","webauthn:extension:credBlob":true,"webauthn:extension:largeBlob":true,"webauthn:extension:minPinLength":true,"webauthn:extension:prf":true,"webauthn:virtualAuthenticators":true},"sessionId":"11c0a8912c7f541226d97830d0adf040"}} | headers=HTTPHeaderDict({'Content-Length': '886', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
-[DEBUG][2025-01-30 19:45:34,636][selenium.webdriver.remote.remote_connection] Finished Request
-[INFO][2025-01-30 19:45:34,637][root] Prepare "chrome" browser...
-[INFO][2025-01-30 19:45:34,638][root] Browser "chrome" has been started...
-[DEBUG][2025-01-30 19:45:36,181][selenium.webdriver.remote.remote_connection] DELETE http://localhost:51947/session/11c0a8912c7f541226d97830d0adf040 {}
-[DEBUG][2025-01-30 19:45:36,223][urllib3.connectionpool] http://localhost:51947 "DELETE /session/11c0a8912c7f541226d97830d0adf040 HTTP/1.1" 200 0
-[DEBUG][2025-01-30 19:45:36,224][selenium.webdriver.remote.remote_connection] Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
-[DEBUG][2025-01-30 19:45:36,225][selenium.webdriver.remote.remote_connection] Finished Request
+[INFO][2025-02-02 18:36:28,619][WDM] ====== WebDriver manager ======
+[INFO][2025-02-02 18:36:30,308][WDM] Get LATEST chromedriver version for google-chrome
+[DEBUG][2025-02-02 18:36:30,328][urllib3.connectionpool] Starting new HTTPS connection (1): googlechromelabs.github.io:443
+[DEBUG][2025-02-02 18:36:50,378][urllib3.connectionpool] https://googlechromelabs.github.io:443 "GET /chrome-for-testing/latest-patch-versions-per-build.json HTTP/1.1" 200 9491
+[INFO][2025-02-02 18:36:51,517][WDM] Get LATEST chromedriver version for google-chrome
+[DEBUG][2025-02-02 18:36:51,532][urllib3.connectionpool] Starting new HTTPS connection (1): googlechromelabs.github.io:443
+[DEBUG][2025-02-02 18:37:07,079][urllib3.connectionpool] https://googlechromelabs.github.io:443 "GET /chrome-for-testing/latest-patch-versions-per-build.json HTTP/1.1" 200 9491
+[INFO][2025-02-02 18:37:07,761][WDM] Driver [C:\Users\Serjan777\.wdm\drivers\chromedriver\win64\132.0.6834.159\chromedriver-win32/chromedriver.exe] found in cache
+[DEBUG][2025-02-02 18:37:07,762][selenium.webdriver.common.driver_finder] Skipping Selenium Manager; path to chrome driver specified in Service class: C:\Users\Serjan777\.wdm\drivers\chromedriver\win64\132.0.6834.159\chromedriver-win32/chromedriver.exe
+[DEBUG][2025-02-02 18:37:07,800][selenium.webdriver.common.service] Started executable: `C:\Users\Serjan777\.wdm\drivers\chromedriver\win64\132.0.6834.159\chromedriver-win32/chromedriver.exe` in a child process with pid: 3348 using 0 to output -3
+[DEBUG][2025-02-02 18:37:08,311][selenium.webdriver.remote.remote_connection] POST http://localhost:55585/session {'capabilities': {'firstMatch': [{}], 'alwaysMatch': {'browserName': 'chrome', 'pageLoadStrategy': <PageLoadStrategy.normal: 'normal'>, 'goog:chromeOptions': {'extensions': [], 'args': []}}}}
+[DEBUG][2025-02-02 18:37:08,313][urllib3.connectionpool] Starting new HTTP connection (1): localhost:55585
+[DEBUG][2025-02-02 18:37:09,551][urllib3.connectionpool] http://localhost:55585 "POST /session HTTP/1.1" 200 0
+[DEBUG][2025-02-02 18:37:09,552][selenium.webdriver.remote.remote_connection] Remote response: status=200 | data={"value":{"capabilities":{"acceptInsecureCerts":false,"browserName":"chrome","browserVersion":"132.0.6834.160","chrome":{"chromedriverVersion":"132.0.6834.159 (2d77d3fc4452661469b78f115e0aed4d71269739-refs/branch-heads/6834@{#4408})","userDataDir":"C:\\Users\\SERJAN~1\\AppData\\Local\\Temp\\scoped_dir3348_85955535"},"fedcm:accounts":true,"goog:chromeOptions":{"debuggerAddress":"localhost:55592"},"networkConnectionEnabled":false,"pageLoadStrategy":"normal","platformName":"windows","proxy":{},"setWindowRect":true,"strictFileInteractability":false,"timeouts":{"implicit":0,"pageLoad":300000,"script":30000},"unhandledPromptBehavior":"dismiss and notify","webauthn:extension:credBlob":true,"webauthn:extension:largeBlob":true,"webauthn:extension:minPinLength":true,"webauthn:extension:prf":true,"webauthn:virtualAuthenticators":true},"sessionId":"7a4f7ba071a445a3f4cbe3e0bb91652c"}} | headers=HTTPHeaderDict({'Content-Length': '884', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+[DEBUG][2025-02-02 18:37:09,553][selenium.webdriver.remote.remote_connection] Finished Request
+[INFO][2025-02-02 18:37:09,554][root] Prepare "chrome" browser...
+[INFO][2025-02-02 18:37:09,555][root] Browser "chrome" has been started...
+[DEBUG][2025-02-02 18:37:12,633][urllib3.connectionpool] Starting new HTTP connection (1): localhost:8080
+[DEBUG][2025-02-02 18:37:12,662][urllib3.connectionpool] http://localhost:8080 "POST /proxy HTTP/1.1" 200 13
+[INFO][2025-02-02 18:37:12,670][WDM] ====== WebDriver manager ======
+[INFO][2025-02-02 18:37:14,343][WDM] Get LATEST chromedriver version for google-chrome
+[DEBUG][2025-02-02 18:37:14,354][urllib3.connectionpool] Starting new HTTPS connection (1): googlechromelabs.github.io:443
+[DEBUG][2025-02-02 18:37:15,058][urllib3.connectionpool] https://googlechromelabs.github.io:443 "GET /chrome-for-testing/latest-patch-versions-per-build.json HTTP/1.1" 200 9491
+[INFO][2025-02-02 18:37:15,135][WDM] Get LATEST chromedriver version for google-chrome
+[DEBUG][2025-02-02 18:37:15,146][urllib3.connectionpool] Starting new HTTPS connection (1): googlechromelabs.github.io:443
+[DEBUG][2025-02-02 18:37:15,364][urllib3.connectionpool] https://googlechromelabs.github.io:443 "GET /chrome-for-testing/latest-patch-versions-per-build.json HTTP/1.1" 200 9491
+[INFO][2025-02-02 18:37:15,441][WDM] Driver [C:\Users\Serjan777\.wdm\drivers\chromedriver\win64\132.0.6834.159\chromedriver-win32/chromedriver.exe] found in cache
+[DEBUG][2025-02-02 18:37:15,442][selenium.webdriver.common.driver_finder] Skipping Selenium Manager; path to chrome driver specified in Service class: C:\Users\Serjan777\.wdm\drivers\chromedriver\win64\132.0.6834.159\chromedriver-win32/chromedriver.exe
+[DEBUG][2025-02-02 18:37:15,461][selenium.webdriver.common.service] Started executable: `C:\Users\Serjan777\.wdm\drivers\chromedriver\win64\132.0.6834.159\chromedriver-win32/chromedriver.exe` in a child process with pid: 2592 using 0 to output -3
+[DEBUG][2025-02-02 18:37:15,982][selenium.webdriver.remote.remote_connection] POST http://localhost:55663/session {'capabilities': {'firstMatch': [{}], 'alwaysMatch': {'browserName': 'chrome', 'pageLoadStrategy': <PageLoadStrategy.normal: 'normal'>, 'goog:chromeOptions': {'extensions': [], 'args': ['--proxy-server=localhost:8083']}}}}
+[DEBUG][2025-02-02 18:37:15,986][urllib3.connectionpool] Starting new HTTP connection (1): localhost:55663
+[DEBUG][2025-02-02 18:37:17,435][urllib3.connectionpool] http://localhost:55663 "POST /session HTTP/1.1" 200 0
+[DEBUG][2025-02-02 18:37:17,437][selenium.webdriver.remote.remote_connection] Remote response: status=200 | data={"value":{"capabilities":{"acceptInsecureCerts":false,"browserName":"chrome","browserVersion":"132.0.6834.160","chrome":{"chromedriverVersion":"132.0.6834.159 (2d77d3fc4452661469b78f115e0aed4d71269739-refs/branch-heads/6834@{#4408})","userDataDir":"C:\\Users\\SERJAN~1\\AppData\\Local\\Temp\\scoped_dir2592_11411518"},"fedcm:accounts":true,"goog:chromeOptions":{"debuggerAddress":"localhost:55669"},"networkConnectionEnabled":false,"pageLoadStrategy":"normal","platformName":"windows","proxy":{},"setWindowRect":true,"strictFileInteractability":false,"timeouts":{"implicit":0,"pageLoad":300000,"script":30000},"unhandledPromptBehavior":"dismiss and notify","webauthn:extension:credBlob":true,"webauthn:extension:largeBlob":true,"webauthn:extension:minPinLength":true,"webauthn:extension:prf":true,"webauthn:virtualAuthenticators":true},"sessionId":"24a6803fe386f061bde3e1610bc29005"}} | headers=HTTPHeaderDict({'Content-Length': '884', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+[DEBUG][2025-02-02 18:37:17,438][selenium.webdriver.remote.remote_connection] Finished Request
+[DEBUG][2025-02-02 18:37:17,456][urllib3.connectionpool] Starting new HTTP connection (1): localhost:8080
+[DEBUG][2025-02-02 18:37:17,469][urllib3.connectionpool] http://localhost:8080 "PUT /proxy/8083/har HTTP/1.1" 204 0
+[DEBUG][2025-02-02 18:37:17,495][urllib3.connectionpool] Starting new HTTP connection (1): localhost:8080
+[DEBUG][2025-02-02 18:37:17,514][urllib3.connectionpool] http://localhost:8080 "GET /proxy/8083/har HTTP/1.1" 200 249
+[DEBUG][2025-02-02 18:37:17,532][selenium.webdriver.remote.remote_connection] DELETE http://localhost:55663/session/24a6803fe386f061bde3e1610bc29005 {}
+[DEBUG][2025-02-02 18:37:17,635][urllib3.connectionpool] http://localhost:55663 "DELETE /session/24a6803fe386f061bde3e1610bc29005 HTTP/1.1" 200 0
+[DEBUG][2025-02-02 18:37:17,638][selenium.webdriver.remote.remote_connection] Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+[DEBUG][2025-02-02 18:37:17,639][selenium.webdriver.remote.remote_connection] Finished Request
+[DEBUG][2025-02-02 18:37:23,979][selenium.webdriver.remote.remote_connection] POST http://localhost:55585/session/7a4f7ba071a445a3f4cbe3e0bb91652c/url {'url': 'https://pizzeria.skillbox.cc/'}
+[DEBUG][2025-02-02 18:37:36,320][urllib3.connectionpool] http://localhost:55585 "POST /session/7a4f7ba071a445a3f4cbe3e0bb91652c/url HTTP/1.1" 200 0
+[DEBUG][2025-02-02 18:37:36,321][selenium.webdriver.remote.remote_connection] Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+[DEBUG][2025-02-02 18:37:36,321][selenium.webdriver.remote.remote_connection] Finished Request
+[DEBUG][2025-02-02 18:37:39,322][selenium.webdriver.remote.remote_connection] POST http://localhost:55585/session/7a4f7ba071a445a3f4cbe3e0bb91652c/element {'using': 'xpath', 'value': '(//*[contains(@data-product_id, "419")])[2]'}
+[DEBUG][2025-02-02 18:37:39,344][urllib3.connectionpool] http://localhost:55585 "POST /session/7a4f7ba071a445a3f4cbe3e0bb91652c/element HTTP/1.1" 200 0
+[DEBUG][2025-02-02 18:37:39,345][selenium.webdriver.remote.remote_connection] Remote response: status=200 | data={"value":{"element-6066-11e4-a52e-4f735466cecf":"f.B1FB1F8507EA08BB2D82359F462356A5.d.C96FB2BBE237939261C69C0A705E1B74.e.21"}} | headers=HTTPHeaderDict({'Content-Length': '126', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+[DEBUG][2025-02-02 18:37:39,345][selenium.webdriver.remote.remote_connection] Finished Request
+[DEBUG][2025-02-02 18:37:39,347][selenium.webdriver.remote.remote_connection] POST http://localhost:55585/session/7a4f7ba071a445a3f4cbe3e0bb91652c/element/f.B1FB1F8507EA08BB2D82359F462356A5.d.C96FB2BBE237939261C69C0A705E1B74.e.21/click {}
+[DEBUG][2025-02-02 18:37:39,418][urllib3.connectionpool] http://localhost:55585 "POST /session/7a4f7ba071a445a3f4cbe3e0bb91652c/element/f.B1FB1F8507EA08BB2D82359F462356A5.d.C96FB2BBE237939261C69C0A705E1B74.e.21/click HTTP/1.1" 200 0
+[DEBUG][2025-02-02 18:37:39,419][selenium.webdriver.remote.remote_connection] Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+[DEBUG][2025-02-02 18:37:39,420][selenium.webdriver.remote.remote_connection] Finished Request
+[DEBUG][2025-02-02 18:37:42,421][selenium.webdriver.remote.remote_connection] POST http://localhost:55585/session/7a4f7ba071a445a3f4cbe3e0bb91652c/element {'using': 'xpath', 'value': '//*[@class="cart-contents wcmenucart-contents"]'}
+[DEBUG][2025-02-02 18:37:42,438][urllib3.connectionpool] http://localhost:55585 "POST /session/7a4f7ba071a445a3f4cbe3e0bb91652c/element HTTP/1.1" 200 0
+[DEBUG][2025-02-02 18:37:42,440][selenium.webdriver.remote.remote_connection] Remote response: status=200 | data={"value":{"element-6066-11e4-a52e-4f735466cecf":"f.B1FB1F8507EA08BB2D82359F462356A5.d.C96FB2BBE237939261C69C0A705E1B74.e.24"}} | headers=HTTPHeaderDict({'Content-Length': '126', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+[DEBUG][2025-02-02 18:37:42,440][selenium.webdriver.remote.remote_connection] Finished Request
+[DEBUG][2025-02-02 18:37:42,440][selenium.webdriver.remote.remote_connection] POST http://localhost:55585/session/7a4f7ba071a445a3f4cbe3e0bb91652c/element/f.B1FB1F8507EA08BB2D82359F462356A5.d.C96FB2BBE237939261C69C0A705E1B74.e.24/click {}
+[DEBUG][2025-02-02 18:37:51,551][urllib3.connectionpool] http://localhost:55585 "POST /session/7a4f7ba071a445a3f4cbe3e0bb91652c/element/f.B1FB1F8507EA08BB2D82359F462356A5.d.C96FB2BBE237939261C69C0A705E1B74.e.24/click HTTP/1.1" 200 0
+[DEBUG][2025-02-02 18:37:51,552][selenium.webdriver.remote.remote_connection] Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+[DEBUG][2025-02-02 18:37:51,552][selenium.webdriver.remote.remote_connection] Finished Request
+[DEBUG][2025-02-02 18:37:54,554][selenium.webdriver.remote.remote_connection] POST http://localhost:55585/session/7a4f7ba071a445a3f4cbe3e0bb91652c/element {'using': 'css selector', 'value': '#coupon_code'}
+[DEBUG][2025-02-02 18:37:54,570][urllib3.connectionpool] http://localhost:55585 "POST /session/7a4f7ba071a445a3f4cbe3e0bb91652c/element HTTP/1.1" 200 0
+[DEBUG][2025-02-02 18:37:54,572][selenium.webdriver.remote.remote_connection] Remote response: status=200 | data={"value":{"element-6066-11e4-a52e-4f735466cecf":"f.B1FB1F8507EA08BB2D82359F462356A5.d.F0632960C327D58031BBEC9DFD938AEF.e.34"}} | headers=HTTPHeaderDict({'Content-Length': '126', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+[DEBUG][2025-02-02 18:37:54,572][selenium.webdriver.remote.remote_connection] Finished Request
+[DEBUG][2025-02-02 18:37:54,573][selenium.webdriver.remote.remote_connection] POST http://localhost:55585/session/7a4f7ba071a445a3f4cbe3e0bb91652c/element/f.B1FB1F8507EA08BB2D82359F462356A5.d.F0632960C327D58031BBEC9DFD938AEF.e.34/value {'text': 'GIVEMEHALYAVA', 'value': ['G', 'I', 'V', 'E', 'M', 'E', 'H', 'A', 'L', 'Y', 'A', 'V', 'A']}
+[DEBUG][2025-02-02 18:37:54,657][urllib3.connectionpool] http://localhost:55585 "POST /session/7a4f7ba071a445a3f4cbe3e0bb91652c/element/f.B1FB1F8507EA08BB2D82359F462356A5.d.F0632960C327D58031BBEC9DFD938AEF.e.34/value HTTP/1.1" 200 0
+[DEBUG][2025-02-02 18:37:54,658][selenium.webdriver.remote.remote_connection] Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+[DEBUG][2025-02-02 18:37:54,659][selenium.webdriver.remote.remote_connection] Finished Request
+[DEBUG][2025-02-02 18:37:57,660][selenium.webdriver.remote.remote_connection] POST http://localhost:55585/session/7a4f7ba071a445a3f4cbe3e0bb91652c/element {'using': 'xpath', 'value': '//*[@name="apply_coupon"]'}
+[DEBUG][2025-02-02 18:37:57,674][urllib3.connectionpool] http://localhost:55585 "POST /session/7a4f7ba071a445a3f4cbe3e0bb91652c/element HTTP/1.1" 200 0
+[DEBUG][2025-02-02 18:37:57,676][selenium.webdriver.remote.remote_connection] Remote response: status=200 | data={"value":{"element-6066-11e4-a52e-4f735466cecf":"f.B1FB1F8507EA08BB2D82359F462356A5.d.F0632960C327D58031BBEC9DFD938AEF.e.38"}} | headers=HTTPHeaderDict({'Content-Length': '126', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+[DEBUG][2025-02-02 18:37:57,677][selenium.webdriver.remote.remote_connection] Finished Request
+[DEBUG][2025-02-02 18:37:57,677][selenium.webdriver.remote.remote_connection] POST http://localhost:55585/session/7a4f7ba071a445a3f4cbe3e0bb91652c/element/f.B1FB1F8507EA08BB2D82359F462356A5.d.F0632960C327D58031BBEC9DFD938AEF.e.38/click {}
+[DEBUG][2025-02-02 18:37:57,745][urllib3.connectionpool] http://localhost:55585 "POST /session/7a4f7ba071a445a3f4cbe3e0bb91652c/element/f.B1FB1F8507EA08BB2D82359F462356A5.d.F0632960C327D58031BBEC9DFD938AEF.e.38/click HTTP/1.1" 200 0
+[DEBUG][2025-02-02 18:37:57,747][selenium.webdriver.remote.remote_connection] Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+[DEBUG][2025-02-02 18:37:57,747][selenium.webdriver.remote.remote_connection] Finished Request
+[DEBUG][2025-02-02 18:37:58,115][selenium.webdriver.remote.remote_connection] DELETE http://localhost:55585/session/7a4f7ba071a445a3f4cbe3e0bb91652c {}
+[DEBUG][2025-02-02 18:37:58,165][urllib3.connectionpool] http://localhost:55585 "DELETE /session/7a4f7ba071a445a3f4cbe3e0bb91652c HTTP/1.1" 200 0
+[DEBUG][2025-02-02 18:37:58,169][selenium.webdriver.remote.remote_connection] Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+[DEBUG][2025-02-02 18:37:58,170][selenium.webdriver.remote.remote_connection] Finished Request

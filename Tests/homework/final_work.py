@@ -3,8 +3,11 @@ import time
 from lib2to3.pgen2 import driver
 from winreg import DeleteValue
 import requests
+from selenium.webdriver.chrome.service import Service
 from urllib3.util import proxy
 from selenium.webdriver.common.alert import Alert
+from webdriver_manager.chrome import ChromeDriverManager
+
 from src.actions.adds import add_pizza
 from src.actions.authorization import authorization
 from src.actions.forms import fill_forms
@@ -255,24 +258,55 @@ class TestValidate:
 
         pass
 
-    def test_apply_promo_code_3(self, get_driver, send_500_response):
-        with allure.step('Переход на страницу https://pizzeria.skillbox.cc/'):
+    def test_apply_promo_code_3(self, get_driver):
+        server = Server(
+            r"C:\Program Files (x86)\browsermob-proxy-2.1.4-bin\browsermob-proxy-2.1.4\bin\browsermob-proxy.bat")
+        server.start()
+        time.sleep(3)
+        proxy = server.create_proxy()
+        options = webdriver.ChromeOptions()
+        options.add_argument(f'--proxy-server={proxy.proxy}')
+        service = Service(executable_path=ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service, options=options)
+        proxy.new_har("500", options={'captureHeaders': True, 'captureContent': True})
+        get_driver.get("https://pizzeria.skillbox.cc/")
+        time.sleep(10)
+        get_driver.find_element(By.XPATH,'(//*[contains(@data-product_id, "419")])[2]').click()
+        time.sleep(3)
+        get_driver.find_element(By.XPATH, '//*[@class="cart-contents wcmenucart-contents"]').click()
+        time.sleep(3)
+        get_driver.find_element(By.CSS_SELECTOR, '#coupon_code').send_keys('GIVEMEHALYAVA')
+        time.sleep(3)
+        get_driver.find_element(By.XPATH, '//*[@name="apply_coupon"]').click()
+        #proxy.blacklist("https://pizzeria.skillbox.cc/cart/api/apply-promo", 500)
 
-            get_driver.get('https://pizzeria.skillbox.cc/')
-            time.sleep(3)
-        with allure.step('Добавить пиццу "Ветчина и грибы" в "Корзину"'):
-            get_driver.find_element(By.XPATH, '(//*[contains(@data-product_id, "419")])[2]').click()
-            time.sleep(3)
-        with allure.step('Перейдите в окно оформления товаров.'):
-            get_driver.find_element(By.XPATH, '//*[@class="cart-contents wcmenucart-contents"]').click()
-            time.sleep(3)
-        with allure.step('Примените промокод GIVEMEHALYAVA.'):
-            get_driver.find_element(By.CSS_SELECTOR, '#coupon_code').send_keys('GIVEMEHALYAVA')
-            time.sleep(3)
-            get_driver.find_element(By.XPATH, '//*[@name="apply_coupon"]').click()
+        for entry in proxy.har['log']['entries']:
+            request_url = entry['request']['url']
+            if 'pizzeria.skillbox.cc/cart' in request_url:
+                proxy.rewrite_url(request_url, "https://pizzeria.skillbox.cc/cart/500")
+                proxy.add_header(request_url, "HTTP/1.1 500 Internal Server Error")
+        price = get_driver.find_element(By.XPATH, '//td/strong/span/bdi')
+        assert '450,00' in price.text
 
-        with allure.step('Перехватите запрос, уходящий с веба на сервер, и заблокируйте его. Вернуть ответ с ошибкой (500).'):
-            send_500_response(get_driver)
+        server.stop()
+        driver.quit()
+        # with allure.step('Переход на страницу https://pizzeria.skillbox.cc/'):
+        #
+        #     get_driver.get('https://pizzeria.skillbox.cc/')
+        #     time.sleep(3)
+        # with allure.step('Добавить пиццу "Ветчина и грибы" в "Корзину"'):
+        #     get_driver.find_element(By.XPATH, '(//*[contains(@data-product_id, "419")])[2]').click()
+        #     time.sleep(3)
+        # with allure.step('Перейдите в окно оформления товаров.'):
+        #     get_driver.find_element(By.XPATH, '//*[@class="cart-contents wcmenucart-contents"]').click()
+        #     time.sleep(3)
+        # with allure.step('Примените промокод GIVEMEHALYAVA.'):
+        #     get_driver.find_element(By.CSS_SELECTOR, '#coupon_code').send_keys('GIVEMEHALYAVA')
+        #     time.sleep(3)
+        #     get_driver.find_element(By.XPATH, '//*[@name="apply_coupon"]').click()
+        #
+        # with allure.step('Перехватите запрос, уходящий с веба на сервер, и заблокируйте его. Вернуть ответ с ошибкой (500).'):
+        #     send_500_response(get_driver)
 
         pass
 

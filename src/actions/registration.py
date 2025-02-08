@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 import allure
 import time
-from selenium import webdriver
+
 
 def registration(self, get_driver):
     with allure.step('Переход на страницу https://pizzeria.skillbox.cc/'):
@@ -24,5 +24,6 @@ def registration(self, get_driver):
         time.sleep(3)
     with allure.step('Нажать "Зарегистрироваться"'):
         get_driver.find_element(By.XPATH,
-                                '//*[@class="woocommerce-Button woocommerce-button button woocommerce-form-register__submit"]').click()
+                                '//*[@class="woocommerce-Button woocommerce-button\n'
+                                ' button woocommerce-form-register__submit"]').click()
         time.sleep(3)

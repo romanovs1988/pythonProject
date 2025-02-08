@@ -1,10 +1,5 @@
-import re
 import time
-from lib2to3.pgen2 import driver
-from winreg import DeleteValue
-import requests
 from selenium.webdriver.chrome.service import Service
-from urllib3.util import proxy
 from selenium.webdriver.common.alert import Alert
 from webdriver_manager.chrome import ChromeDriverManager
 
@@ -13,13 +8,8 @@ from src.actions.authorization import authorization
 from src.actions.forms import fill_forms
 from src.actions.registration import registration
 import allure
-import pytest
 from selenium import webdriver
-from playwright.sync_api import expect
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support import wait
-from selenium.webdriver.common.keys import Keys
 from browsermobproxy import Server
 
 
@@ -50,7 +40,6 @@ class TestValidate:
             get_driver.find_element(By.XPATH, '//*[contains(@class, "slick-prev")]').click()
             time.sleep(5)
 
-
         pass
 
     def test_2(self, get_driver):
@@ -60,7 +49,8 @@ class TestValidate:
         with allure.step('Нажать на картинку пиццы «4 в 1» в слайдере.'):
             get_driver.find_element(By.XPATH, '(//*[contains(@title, "Пицца «4 в 1»")])[1]').click()
             time.sleep(3)
-        with allure.step('Выбрать дополнительную опцию в выпадающем списке "Выбор борта для пиццы" (сырный борт, пицца «4 в 1»)'):
+        with allure.step('Выбрать дополнительную опцию в выпадающем списке\n'
+                         ' "Выбор борта для пиццы" (сырный борт, пицца «4 в 1»)'):
             get_driver.find_element(By.CSS_SELECTOR, '#board_pack').click()
             time.sleep(3)
             get_driver.find_element(By.XPATH, '//*[contains(@value, "55.00")]').click()
@@ -205,12 +195,12 @@ class TestValidate:
         with allure.step('Проверить, что на странице "Заказ получен" отображаются веденные данные'):
             address_check = get_driver.find_element(By.XPATH, '//section/address')
             assert ('Андрей Андреев\n'
-                'ул. Пушкина 13, кв. 47\n'
-                'Москва\n'
-                'Московская\n'
-                '108811\n'
-                '+79971234567\n'
-                'andrey5@pizza.ru') in address_check.text
+                    'ул. Пушкина 13, кв. 47\n'
+                    'Москва\n'
+                    'Московская\n'
+                    '108811\n'
+                    '+79971234567\n'
+                    'andrey5@pizza.ru') in address_check.text
 
         pass
 
@@ -221,10 +211,10 @@ class TestValidate:
         with allure.step('Добавить пиццу "Ветчина и грибы" в "Корзину"'):
             add_pizza(get_driver)
             time.sleep(3)
-        with allure.step('Перейдите в окно оформления товаров.'):
+        with allure.step('Перейти в "Корзину".'):
             get_driver.find_element(By.XPATH, '//*[@class="cart-contents wcmenucart-contents"]').click()
             time.sleep(3)
-        with allure.step('Примените промокод GIVEMEHALYAVA.'):
+        with allure.step('Применить промокод GIVEMEHALYAVA.'):
             get_driver.find_element(By.CSS_SELECTOR, '#coupon_code').send_keys('GIVEMEHALYAVA')
             time.sleep(3)
         with allure.step('Нажать "Применить купон"'):
@@ -243,10 +233,10 @@ class TestValidate:
         with allure.step('Добавить пиццу "Ветчина и грибы" в "Корзину"'):
             add_pizza(get_driver)
             time.sleep(3)
-        with allure.step('Перейдите в окно оформления товаров.'):
+        with allure.step('Перейти в "Корзину".'):
             get_driver.find_element(By.XPATH, '//*[@class="cart-contents wcmenucart-contents"]').click()
             time.sleep(3)
-        with allure.step('Примените промокод DC120.'):
+        with allure.step('Ввести промокод "DC120" в поле "Купон".'):
             get_driver.find_element(By.CSS_SELECTOR, '#coupon_code').send_keys('DC120')
             time.sleep(3)
         with allure.step('Нажать "Применить купон"'):
@@ -269,44 +259,32 @@ class TestValidate:
         service = Service(executable_path=ChromeDriverManager().install())
         driver = webdriver.Chrome(service=service, options=options)
         proxy.new_har("500", options={'captureHeaders': True, 'captureContent': True})
-        get_driver.get("https://pizzeria.skillbox.cc/")
-        time.sleep(10)
-        get_driver.find_element(By.XPATH,'(//*[contains(@data-product_id, "419")])[2]').click()
-        time.sleep(3)
-        get_driver.find_element(By.XPATH, '//*[@class="cart-contents wcmenucart-contents"]').click()
-        time.sleep(3)
-        get_driver.find_element(By.CSS_SELECTOR, '#coupon_code').send_keys('GIVEMEHALYAVA')
-        time.sleep(3)
-        get_driver.find_element(By.XPATH, '//*[@name="apply_coupon"]').click()
-        #proxy.blacklist("https://pizzeria.skillbox.cc/cart/api/apply-promo", 500)
-
-        for entry in proxy.har['log']['entries']:
-            request_url = entry['request']['url']
-            if 'pizzeria.skillbox.cc/cart' in request_url:
-                proxy.rewrite_url(request_url, "https://pizzeria.skillbox.cc/cart/500")
-                proxy.add_header(request_url, "HTTP/1.1 500 Internal Server Error")
-        price = get_driver.find_element(By.XPATH, '//td/strong/span/bdi')
-        assert '450,00' in price.text
+        with allure.step('Переход на страницу https://pizzeria.skillbox.cc/'):
+            get_driver.get("https://pizzeria.skillbox.cc/")
+            time.sleep(10)
+        with allure.step('Добавить пиццу "Ветчина и грибы" в "Корзину"'):
+            get_driver.find_element(By.XPATH, '(//*[contains(@data-product_id, "419")])[2]').click()
+            time.sleep(3)
+        with allure.step('Перейти в "Корзину".'):
+            get_driver.find_element(By.XPATH, '//*[@class="cart-contents wcmenucart-contents"]').click()
+            time.sleep(3)
+        with allure.step('Применить промокод GIVEMEHALYAVA.'):
+            get_driver.find_element(By.CSS_SELECTOR, '#coupon_code').send_keys('GIVEMEHALYAVA')
+            time.sleep(3)
+            get_driver.find_element(By.XPATH, '//*[@name="apply_coupon"]').click()
+            time.sleep(3)
+        with allure.step('Перехватить запрос с ошибкой "500".'):
+            for entry in proxy.har['log']['entries']:
+                request_url = entry['request']['url']
+                if 'pizzeria.skillbox.cc/cart' in request_url:
+                    proxy.rewrite_url(request_url, "https://pizzeria.skillbox.cc/cart/500")
+                    proxy.add_header(request_url, "HTTP/1.1 500 Internal Server Error")
+        with allure.step('Убедитесь, что конечная сумма заказа НЕ уменьшилась на 10%.'):
+            price = get_driver.find_element(By.XPATH, '//td/strong/span/bdi')
+            assert '450,00' in price.text
 
         server.stop()
         driver.quit()
-        # with allure.step('Переход на страницу https://pizzeria.skillbox.cc/'):
-        #
-        #     get_driver.get('https://pizzeria.skillbox.cc/')
-        #     time.sleep(3)
-        # with allure.step('Добавить пиццу "Ветчина и грибы" в "Корзину"'):
-        #     get_driver.find_element(By.XPATH, '(//*[contains(@data-product_id, "419")])[2]').click()
-        #     time.sleep(3)
-        # with allure.step('Перейдите в окно оформления товаров.'):
-        #     get_driver.find_element(By.XPATH, '//*[@class="cart-contents wcmenucart-contents"]').click()
-        #     time.sleep(3)
-        # with allure.step('Примените промокод GIVEMEHALYAVA.'):
-        #     get_driver.find_element(By.CSS_SELECTOR, '#coupon_code').send_keys('GIVEMEHALYAVA')
-        #     time.sleep(3)
-        #     get_driver.find_element(By.XPATH, '//*[@name="apply_coupon"]').click()
-        #
-        # with allure.step('Перехватите запрос, уходящий с веба на сервер, и заблокируйте его. Вернуть ответ с ошибкой (500).'):
-        #     send_500_response(get_driver)
 
         pass
 
@@ -410,12 +388,3 @@ class TestValidate:
             assert 'Введен неверный формат телефона' in name_field.text
 
         pass
-
-
-
-
-
-
-
-
-

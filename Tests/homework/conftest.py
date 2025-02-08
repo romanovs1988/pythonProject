@@ -9,5 +9,6 @@ def new_fixture():
 def get_driver():
     pass
 
+
 def send_500_response():
     pass

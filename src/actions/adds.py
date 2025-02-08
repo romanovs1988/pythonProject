@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
-import allure
 import time
+
 
 def add_pizza(get_driver):
     get_driver.find_element(By.CSS_SELECTOR, '#menu-item-26').click()

@@ -1,12 +1,9 @@
 import logging
-import time
-import psutil
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 import allure
-from browsermobproxy import Server
 
 
 """@pytest.fixture()
@@ -45,32 +42,10 @@ def get_driver(pytestconfig):
     yield driver
     driver.quit()
 
+
 @pytest.fixture
 def go_to_url(page):
     @allure.step('Открытие страницы {url}')
     def callback(url):
         page.goto(url, wait_until='domcontentloaded')
     return callback
-
-@pytest.fixture()
-def send_500_response():
-
-    server = Server(r"C:\Program Files (x86)\browsermob-proxy-2.1.4-bin\browsermob-proxy-2.1.4\bin\browsermob-proxy.bat")
-    server.start()
-    time.sleep(3)
-    proxy = server.create_proxy()
-    options = webdriver.ChromeOptions()
-    options.add_argument(f'--proxy-server={proxy.proxy}')
-    service = Service(executable_path=ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service, options=options)
-    proxy.new_har("500", options={'captureHeaders': True, 'captureContent': True})
-    #driver.get("https://pizzeria.skillbox.cc/cart/")
-    for entry in proxy.har['log']['entries']:
-        request_url = entry['500']['pizzeria.skillbox.cc/cart']
-        if 'pizzeria.skillbox.cc/cart' in request_url:
-            proxy.rewrite_url(request_url, "https://pizzeria.skillbox.cc/cart/500")
-            proxy.add_header(request_url, "HTTP/1.1 500 Internal Server Error")
-
-    server.stop()
-    driver.quit()
-

@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 import allure
 import time
 
+
 def fill_forms(get_driver):
     with allure.step('Нажать на кнопку «Перейти к оплате».'):
         get_driver.find_element(By.CSS_SELECTOR, '.wc-proceed-to-checkout').click()

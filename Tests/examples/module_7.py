@@ -1,9 +1,6 @@
-import asyncio
-from turtle import position
-
-from playwright.sync_api import sync_playwright
 import allure
 import time
+
 
 class TestValidate:
     @allure.title('Проверка загрузки страницы')
@@ -32,10 +29,12 @@ class TestValidate:
             author_button = page.locator('[aria-label="Filter by author"]')
             author_button.click()
         with allure.step('Введите в поиск имя bpasero'):
-            search_input = page.locator('//*[contains(@class, "UnstyledTextInput__ToggledUnstyledTextInput-sc-14ypya-0 jkNcAv")]')
+            search_input = page.locator('//*[contains(@class,\n'
+                                        ' "UnstyledTextInput__ToggledUnstyledTextInput-sc-14ypya-0 jkNcAv")]')
             search_input.fill("bpasero")
         with allure.step('Дождитесь появления в списке нужного автора'):
-            page.wait_for_selector('//*[contains(@class, "UnstyledTextInput__ToggledUnstyledTextInput-sc-14ypya-0 jkNcAv")]')
+            page.wait_for_selector('//*[contains(@class,\n'
+                                   ' "UnstyledTextInput__ToggledUnstyledTextInput-sc-14ypya-0 jkNcAv")]')
         with allure.step('Выберите в выпадающем списке элемент с названием "bpasero"'):
             author_selection = page.locator("a[aria-label='bpasero']")
             author_selection.click()
@@ -115,11 +114,8 @@ class TestValidate:
         page.mouse.up()
         time.sleep(5)
 
-
-
         # Подождите немного, чтобы видеть результат
-        #time.sleep(2)
-
+        # time.sleep(2)
 
         # Шаг 4: Выбор любого чекбокса в тематике
         page.click('//*[@id="#app"]/main/div[1]/div[2]/div/div[1]/div[1]/div[6]/button')
@@ -161,4 +157,5 @@ class TestValidate:
         expected_values = "8 commits the week of Dec 24"  # Замените на ваши ожидаемые значения
 
         # Проверка содержимого тултипа
-        assert expected_values in tooltip_text, f"Тултип не содержит ожидаемое значение: {expected_values}. Найдено: {tooltip_text}"
+        assert expected_values in tooltip_text, (f"Тултип не содержит ожидаемое\n"
+                                                 f" значение: {expected_values}. Найдено: {tooltip_text}")

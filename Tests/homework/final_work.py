@@ -161,13 +161,13 @@ class TestValidate:
 
     def test_7(self, get_driver):
         with allure.step('Зарегистрироваться на сайте'):
-            registration(self, get_driver)
+            registration(get_driver)
         with allure.step('Перейти во вкладку «Мой аккаунт».'):
             get_driver.find_element(By.XPATH, '(//ul/li/a)[10]').click()
             time.sleep(3)
-        with allure.step('Проверить, что на странице "Мой аккаунт" отображается информация "Привет Andrey5"'):
+        with allure.step('Проверить, что на странице "Мой аккаунт" отображается информация "Привет Andrey7"'):
             user_name = get_driver.find_element(By.XPATH, '(//div/p/strong)[1]')
-            assert 'Andrey5' in user_name.text
+            assert 'Andrey7' in user_name.text
 
         pass
 
@@ -175,8 +175,8 @@ class TestValidate:
         with allure.step('Авторизоваться на сайте'):
             authorization(get_driver)
             time.sleep(3)
-        with allure.step('Перейти в "Корзину"'):
-            get_driver.find_element(By.XPATH, '//*[@class="cart-contents wcmenucart-contents"]').click()
+        with allure.step('Добавить пиццу "Ветчина и грибы" в "Корзину"'):
+            add_pizza(get_driver)
             time.sleep(3)
         with allure.step('Заполнение форм данными'):
             fill_forms(get_driver)
@@ -200,7 +200,7 @@ class TestValidate:
                     'Московская\n'
                     '108811\n'
                     '+79971234567\n'
-                    'andrey5@pizza.ru') in address_check.text
+                    'andrey7@pizza.ru') in address_check.text
 
         pass
 

@@ -1,12 +1,5 @@
-import re
 import time
-
 import allure
-from selenium import webdriver
-from playwright.sync_api import expect
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support import wait
 
 
 class Python:
@@ -38,10 +31,12 @@ class TestValidate:
         with allure.step('Клик по найденному элементу'):
             page.click('[aria-label="Filter by author"]')
         with allure.step('Заполнение формы данными'):
-            page.fill('//*[contains(@class, "UnstyledTextInput__ToggledUnstyledTextInput-sc-14ypya-0 jkNcAv")]', "bpasero")
+            page.fill('//*[contains(@class,\n'
+                      ' "UnstyledTextInput__ToggledUnstyledTextInput-sc-14ypya-0 jkNcAv")]', "bpasero")
             page.wait_for_timeout(3000)
         with allure.step('Клик по кнопке ENTER'):
-            page.press('//*[contains(@class, "UnstyledTextInput__ToggledUnstyledTextInput-sc-14ypya-0 jkNcAv")]', "Enter")
+            page.press('//*[contains(@class,\n'
+                       ' "UnstyledTextInput__ToggledUnstyledTextInput-sc-14ypya-0 jkNcAv")]', "Enter")
         with allure.step('Получите все задачи'):
             issue_authors = page.locator("a[data-hovercard-type='user']").all_inner_texts()
         with allure.step('Проверьте, что автор всех задач введён в поиск ("bpasero").'):
@@ -130,5 +125,6 @@ class TestValidate:
         with allure.step('Проверка содержимого тултипа'):
             expected_values = "8 commits the week of Dec 24"
 
-            assert expected_values in tooltip_text, f"Тултип не содержит ожидаемое значение: {expected_values}. Найдено: {tooltip_text}"
+            assert expected_values in tooltip_text, (f"Тултип не содержит ожидаемое значение\n"
+                                                     f": {expected_values}. Найдено: {tooltip_text}")
         pass

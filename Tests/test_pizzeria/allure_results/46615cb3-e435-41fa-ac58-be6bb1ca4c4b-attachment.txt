@@ -1,0 +1,56 @@
+INFO     WDM:logger.py:11 ====== WebDriver manager ======
+INFO     WDM:logger.py:11 Get LATEST chromedriver version for google-chrome
+DEBUG    urllib3.connectionpool:connectionpool.py:1048 Starting new HTTPS connection (1): googlechromelabs.github.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:546 https://googlechromelabs.github.io:443 "GET /chrome-for-testing/latest-patch-versions-per-build.json HTTP/1.1" 200 9491
+INFO     WDM:logger.py:11 Get LATEST chromedriver version for google-chrome
+DEBUG    urllib3.connectionpool:connectionpool.py:1048 Starting new HTTPS connection (1): googlechromelabs.github.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:546 https://googlechromelabs.github.io:443 "GET /chrome-for-testing/latest-patch-versions-per-build.json HTTP/1.1" 200 9491
+INFO     WDM:logger.py:11 Get LATEST chromedriver version for google-chrome
+DEBUG    urllib3.connectionpool:connectionpool.py:1048 Starting new HTTPS connection (1): googlechromelabs.github.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:546 https://googlechromelabs.github.io:443 "GET /chrome-for-testing/latest-patch-versions-per-build.json HTTP/1.1" 200 9491
+DEBUG    urllib3.connectionpool:connectionpool.py:1048 Starting new HTTPS connection (1): googlechromelabs.github.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:546 https://googlechromelabs.github.io:443 "GET /chrome-for-testing/known-good-versions-with-downloads.json HTTP/1.1" 200 76869
+INFO     WDM:logger.py:11 WebDriver version 132.0.6834.159 selected
+INFO     WDM:logger.py:11 Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/132.0.6834.159/win32/chromedriver-win32.zip
+INFO     WDM:logger.py:11 About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/132.0.6834.159/win32/chromedriver-win32.zip
+DEBUG    urllib3.connectionpool:connectionpool.py:1048 Starting new HTTPS connection (1): storage.googleapis.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:546 https://storage.googleapis.com:443 "GET /chrome-for-testing-public/132.0.6834.159/win32/chromedriver-win32.zip HTTP/1.1" 200 8640959
+INFO     WDM:logger.py:11 Driver downloading response is 200
+INFO     WDM:logger.py:11 Get LATEST chromedriver version for google-chrome
+DEBUG    urllib3.connectionpool:connectionpool.py:1048 Starting new HTTPS connection (1): googlechromelabs.github.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:546 https://googlechromelabs.github.io:443 "GET /chrome-for-testing/latest-patch-versions-per-build.json HTTP/1.1" 200 9491
+INFO     WDM:logger.py:11 Driver has been saved in cache [C:\Users\Serjan777\.wdm\drivers\chromedriver\win64\132.0.6834.159]
+DEBUG    selenium.webdriver.common.driver_finder:driver_finder.py:60 Skipping Selenium Manager; path to chrome driver specified in Service class: C:\Users\Serjan777\.wdm\drivers\chromedriver\win64\132.0.6834.159\chromedriver-win32/chromedriver.exe
+DEBUG    selenium.webdriver.common.service:service.py:219 Started executable: `C:\Users\Serjan777\.wdm\drivers\chromedriver\win64\132.0.6834.159\chromedriver-win32/chromedriver.exe` in a child process with pid: 2608 using 0 to output -3
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:305 POST http://localhost:50769/session {'capabilities': {'firstMatch': [{}], 'alwaysMatch': {'browserName': 'chrome', 'pageLoadStrategy': <PageLoadStrategy.normal: 'normal'>, 'goog:chromeOptions': {'extensions': [], 'args': []}}}}
+DEBUG    urllib3.connectionpool:connectionpool.py:244 Starting new HTTP connection (1): localhost:50769
+DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:50769 "POST /session HTTP/1.1" 200 0
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:334 Remote response: status=200 | data={"value":{"capabilities":{"acceptInsecureCerts":false,"browserName":"chrome","browserVersion":"132.0.6834.160","chrome":{"chromedriverVersion":"132.0.6834.159 (2d77d3fc4452661469b78f115e0aed4d71269739-refs/branch-heads/6834@{#4408})","userDataDir":"C:\\Users\\SERJAN~1\\AppData\\Local\\Temp\\scoped_dir2608_493705967"},"fedcm:accounts":true,"goog:chromeOptions":{"debuggerAddress":"localhost:50778"},"networkConnectionEnabled":false,"pageLoadStrategy":"normal","platformName":"windows","proxy":{},"setWindowRect":true,"strictFileInteractability":false,"timeouts":{"implicit":0,"pageLoad":300000,"script":30000},"unhandledPromptBehavior":"dismiss and notify","webauthn:extension:credBlob":true,"webauthn:extension:largeBlob":true,"webauthn:extension:minPinLength":true,"webauthn:extension:prf":true,"webauthn:virtualAuthenticators":true},"sessionId":"32b2e65ac69de4b891ea7e7166a42b10"}} | headers=HTTPHeaderDict({'Content-Length': '885', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:361 Finished Request
+INFO     root:browser.py:42 Prepare "chrome" browser...
+INFO     root:browser.py:43 Browser "chrome" has been started...
+DEBUG    urllib3.connectionpool:connectionpool.py:244 Starting new HTTP connection (1): localhost:8080
+DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:8080 "POST /proxy HTTP/1.1" 200 13
+DEBUG    selenium.webdriver.common.selenium_manager:selenium_manager.py:101 Selenium Manager binary found at: C:\Users\Serjan777\miniconda3\Lib\site-packages\selenium\webdriver\common\selenium-manager.exe
+DEBUG    selenium.webdriver.common.selenium_manager:selenium_manager.py:114 Executing process: C:\Users\Serjan777\miniconda3\Lib\site-packages\selenium\webdriver\common\selenium-manager.exe --browser chrome --debug --language-binding python --output json
+DEBUG    selenium.webdriver.common.selenium_manager:selenium_manager.py:140 Sending stats to Plausible: Props { browser: "chrome", browser_version: "", os: "windows", arch: "amd64", lang: "python", selenium_version: "4.24" }
+DEBUG    selenium.webdriver.common.selenium_manager:selenium_manager.py:140 Found chromedriver 2.38.552522 in PATH: C:\Users\Serjan777\miniconda3\Library\bin\chromedriver.exe
+DEBUG    selenium.webdriver.common.selenium_manager:selenium_manager.py:140 chrome detected at C:\Program Files\Google\Chrome\Application\chrome.exe
+DEBUG    selenium.webdriver.common.selenium_manager:selenium_manager.py:140 Running command: wmic datafile where name='C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe' get Version /value
+DEBUG    selenium.webdriver.common.selenium_manager:selenium_manager.py:140 Output: "\r\r\n\r\r\nVersion=132.0.6834.160\r\r\n\r\r\n\r\r\n\r"
+DEBUG    selenium.webdriver.common.selenium_manager:selenium_manager.py:140 Detected browser: chrome 132.0.6834.160
+DEBUG    selenium.webdriver.common.selenium_manager:selenium_manager.py:140 Discovering versions from https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json
+DEBUG    selenium.webdriver.common.selenium_manager:selenium_manager.py:140 Required driver: chromedriver 132.0.6834.159
+WARNING  selenium.webdriver.common.selenium_manager:selenium_manager.py:138 The chromedriver version (2.38.552522) detected in PATH at C:\Users\Serjan777\miniconda3\Library\bin\chromedriver.exe might not be compatible with the detected chrome version (132.0.6834.160); currently, chromedriver 132.0.6834.159 is recommended for chrome 132.*, so it is advised to delete the driver in PATH and retry
+DEBUG    selenium.webdriver.common.selenium_manager:selenium_manager.py:140 Driver path: C:\Users\Serjan777\miniconda3\Library\bin\chromedriver.exe
+DEBUG    selenium.webdriver.common.selenium_manager:selenium_manager.py:140 Browser path: C:\Program Files\Google\Chrome\Application\chrome.exe
+DEBUG    selenium.webdriver.common.service:service.py:219 Started executable: `C:\Users\Serjan777\miniconda3\Library\bin\chromedriver.exe` in a child process with pid: 15560 using 0 to output -3
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:305 POST http://localhost:50838/session {'capabilities': {'firstMatch': [{}], 'alwaysMatch': {'browserName': 'chrome', 'pageLoadStrategy': <PageLoadStrategy.normal: 'normal'>, 'browserVersion': None, 'goog:chromeOptions': {'extensions': [], 'binary': 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', 'args': ['--proxy-server=localhost:8081']}}}}
+DEBUG    urllib3.connectionpool:connectionpool.py:244 Starting new HTTP connection (1): localhost:50838
+DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:50838 "POST /session HTTP/1.1" 200 0
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:334 Remote response: status=200 | data={"sessionId":"4bad3f3775a81c46d3dc2579f285b12a","status":33,"value":{"message":"session not created exception: Missing or invalid capabilities\n  (Driver info: chromedriver=2.38.552522 (437e6fbedfa8762dec75e2c5b3ddb86763dc9dcb),platform=Windows NT 10.0.19045 x86_64)"}} | headers=HTTPHeaderDict({'Content-Length': '269', 'Content-Type': 'application/json; charset=utf-8'})
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:361 Finished Request
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:305 DELETE http://localhost:50769/session/32b2e65ac69de4b891ea7e7166a42b10 {}
+DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:50769 "DELETE /session/32b2e65ac69de4b891ea7e7166a42b10 HTTP/1.1" 200 0
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:334 Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:361 Finished Request

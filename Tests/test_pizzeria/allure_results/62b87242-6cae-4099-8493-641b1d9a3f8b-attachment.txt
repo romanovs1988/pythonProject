@@ -1,0 +1,73 @@
+INFO     WDM:logger.py:11 ====== WebDriver manager ======
+INFO     WDM:logger.py:11 Get LATEST chromedriver version for google-chrome
+DEBUG    urllib3.connectionpool:connectionpool.py:1048 Starting new HTTPS connection (1): googlechromelabs.github.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:546 https://googlechromelabs.github.io:443 "GET /chrome-for-testing/latest-patch-versions-per-build.json HTTP/1.1" 200 9589
+INFO     WDM:logger.py:11 Get LATEST chromedriver version for google-chrome
+DEBUG    urllib3.connectionpool:connectionpool.py:1048 Starting new HTTPS connection (1): googlechromelabs.github.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:546 https://googlechromelabs.github.io:443 "GET /chrome-for-testing/latest-patch-versions-per-build.json HTTP/1.1" 200 9589
+INFO     WDM:logger.py:11 Driver [C:\Users\Serjan777\.wdm\drivers\chromedriver\win64\132.0.6834.159\chromedriver-win32/chromedriver.exe] found in cache
+DEBUG    selenium.webdriver.common.driver_finder:driver_finder.py:60 Skipping Selenium Manager; path to chrome driver specified in Service class: C:\Users\Serjan777\.wdm\drivers\chromedriver\win64\132.0.6834.159\chromedriver-win32/chromedriver.exe
+DEBUG    selenium.webdriver.common.service:service.py:219 Started executable: `C:\Users\Serjan777\.wdm\drivers\chromedriver\win64\132.0.6834.159\chromedriver-win32/chromedriver.exe` in a child process with pid: 16732 using 0 to output -3
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:305 POST http://localhost:51880/session {'capabilities': {'firstMatch': [{}], 'alwaysMatch': {'browserName': 'chrome', 'pageLoadStrategy': <PageLoadStrategy.normal: 'normal'>, 'goog:chromeOptions': {'extensions': [], 'args': []}}}}
+DEBUG    urllib3.connectionpool:connectionpool.py:244 Starting new HTTP connection (1): localhost:51880
+DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:51880 "POST /session HTTP/1.1" 200 0
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:334 Remote response: status=200 | data={"value":{"capabilities":{"acceptInsecureCerts":false,"browserName":"chrome","browserVersion":"132.0.6834.196","chrome":{"chromedriverVersion":"132.0.6834.159 (2d77d3fc4452661469b78f115e0aed4d71269739-refs/branch-heads/6834@{#4408})","userDataDir":"C:\\Users\\SERJAN~1\\AppData\\Local\\Temp\\scoped_dir16732_859344344"},"fedcm:accounts":true,"goog:chromeOptions":{"debuggerAddress":"localhost:51883"},"networkConnectionEnabled":false,"pageLoadStrategy":"normal","platformName":"windows","proxy":{},"setWindowRect":true,"strictFileInteractability":false,"timeouts":{"implicit":0,"pageLoad":300000,"script":30000},"unhandledPromptBehavior":"dismiss and notify","webauthn:extension:credBlob":true,"webauthn:extension:largeBlob":true,"webauthn:extension:minPinLength":true,"webauthn:extension:prf":true,"webauthn:virtualAuthenticators":true},"sessionId":"3536bfb21df4d33e17c1c830c4f8f59a"}} | headers=HTTPHeaderDict({'Content-Length': '886', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:361 Finished Request
+INFO     root:browser.py:39 Prepare "chrome" browser...
+INFO     root:browser.py:40 Browser "chrome" has been started...
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:305 POST http://localhost:51880/session/3536bfb21df4d33e17c1c830c4f8f59a/url {'url': 'https://pizzeria.skillbox.cc/'}
+DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:51880 "POST /session/3536bfb21df4d33e17c1c830c4f8f59a/url HTTP/1.1" 200 0
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:334 Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:361 Finished Request
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:305 POST http://localhost:51880/session/3536bfb21df4d33e17c1c830c4f8f59a/element {'using': 'xpath', 'value': '(//*[contains(@title, "Пицца «4 в 1»")])[1]'}
+DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:51880 "POST /session/3536bfb21df4d33e17c1c830c4f8f59a/element HTTP/1.1" 200 0
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:334 Remote response: status=200 | data={"value":{"element-6066-11e4-a52e-4f735466cecf":"f.764E6BA9BF7EBF599116B1BF43C19C98.d.C876AD67807835DE94B97ED50A0C7BFF.e.21"}} | headers=HTTPHeaderDict({'Content-Length': '126', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:361 Finished Request
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:305 POST http://localhost:51880/session/3536bfb21df4d33e17c1c830c4f8f59a/element/f.764E6BA9BF7EBF599116B1BF43C19C98.d.C876AD67807835DE94B97ED50A0C7BFF.e.21/click {}
+DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:51880 "POST /session/3536bfb21df4d33e17c1c830c4f8f59a/element/f.764E6BA9BF7EBF599116B1BF43C19C98.d.C876AD67807835DE94B97ED50A0C7BFF.e.21/click HTTP/1.1" 200 0
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:334 Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:361 Finished Request
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:305 POST http://localhost:51880/session/3536bfb21df4d33e17c1c830c4f8f59a/element {'using': 'css selector', 'value': '#board_pack'}
+DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:51880 "POST /session/3536bfb21df4d33e17c1c830c4f8f59a/element HTTP/1.1" 200 0
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:334 Remote response: status=200 | data={"value":{"element-6066-11e4-a52e-4f735466cecf":"f.764E6BA9BF7EBF599116B1BF43C19C98.d.6F78CF852B4ED335B66D51B15F010C37.e.32"}} | headers=HTTPHeaderDict({'Content-Length': '126', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:361 Finished Request
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:305 POST http://localhost:51880/session/3536bfb21df4d33e17c1c830c4f8f59a/element/f.764E6BA9BF7EBF599116B1BF43C19C98.d.6F78CF852B4ED335B66D51B15F010C37.e.32/click {}
+DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:51880 "POST /session/3536bfb21df4d33e17c1c830c4f8f59a/element/f.764E6BA9BF7EBF599116B1BF43C19C98.d.6F78CF852B4ED335B66D51B15F010C37.e.32/click HTTP/1.1" 200 0
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:334 Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:361 Finished Request
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:305 POST http://localhost:51880/session/3536bfb21df4d33e17c1c830c4f8f59a/element {'using': 'xpath', 'value': '//*[contains(@value, "55.00")]'}
+DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:51880 "POST /session/3536bfb21df4d33e17c1c830c4f8f59a/element HTTP/1.1" 200 0
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:334 Remote response: status=200 | data={"value":{"element-6066-11e4-a52e-4f735466cecf":"f.764E6BA9BF7EBF599116B1BF43C19C98.d.6F78CF852B4ED335B66D51B15F010C37.e.39"}} | headers=HTTPHeaderDict({'Content-Length': '126', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:361 Finished Request
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:305 POST http://localhost:51880/session/3536bfb21df4d33e17c1c830c4f8f59a/element/f.764E6BA9BF7EBF599116B1BF43C19C98.d.6F78CF852B4ED335B66D51B15F010C37.e.39/click {}
+DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:51880 "POST /session/3536bfb21df4d33e17c1c830c4f8f59a/element/f.764E6BA9BF7EBF599116B1BF43C19C98.d.6F78CF852B4ED335B66D51B15F010C37.e.39/click HTTP/1.1" 200 0
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:334 Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:361 Finished Request
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:305 POST http://localhost:51880/session/3536bfb21df4d33e17c1c830c4f8f59a/element {'using': 'xpath', 'value': '(//*[contains(@type, "submit")])[2]'}
+DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:51880 "POST /session/3536bfb21df4d33e17c1c830c4f8f59a/element HTTP/1.1" 200 0
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:334 Remote response: status=200 | data={"value":{"element-6066-11e4-a52e-4f735466cecf":"f.764E6BA9BF7EBF599116B1BF43C19C98.d.6F78CF852B4ED335B66D51B15F010C37.e.41"}} | headers=HTTPHeaderDict({'Content-Length': '126', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:361 Finished Request
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:305 POST http://localhost:51880/session/3536bfb21df4d33e17c1c830c4f8f59a/element/f.764E6BA9BF7EBF599116B1BF43C19C98.d.6F78CF852B4ED335B66D51B15F010C37.e.41/click {}
+DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:51880 "POST /session/3536bfb21df4d33e17c1c830c4f8f59a/element/f.764E6BA9BF7EBF599116B1BF43C19C98.d.6F78CF852B4ED335B66D51B15F010C37.e.41/click HTTP/1.1" 200 0
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:334 Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:361 Finished Request
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:305 POST http://localhost:51880/session/3536bfb21df4d33e17c1c830c4f8f59a/element {'using': 'xpath', 'value': '//*[@class="cart-contents wcmenucart-contents"]'}
+DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:51880 "POST /session/3536bfb21df4d33e17c1c830c4f8f59a/element HTTP/1.1" 200 0
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:334 Remote response: status=200 | data={"value":{"element-6066-11e4-a52e-4f735466cecf":"f.764E6BA9BF7EBF599116B1BF43C19C98.d.CBEA1E25092A847330A2533243619B56.e.54"}} | headers=HTTPHeaderDict({'Content-Length': '126', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:361 Finished Request
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:305 POST http://localhost:51880/session/3536bfb21df4d33e17c1c830c4f8f59a/element/f.764E6BA9BF7EBF599116B1BF43C19C98.d.CBEA1E25092A847330A2533243619B56.e.54/click {}
+DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:51880 "POST /session/3536bfb21df4d33e17c1c830c4f8f59a/element/f.764E6BA9BF7EBF599116B1BF43C19C98.d.CBEA1E25092A847330A2533243619B56.e.54/click HTTP/1.1" 200 0
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:334 Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:361 Finished Request
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:305 POST http://localhost:51880/session/3536bfb21df4d33e17c1c830c4f8f59a/element {'using': 'xpath', 'value': '(//*[@class="variation-"])[2]'}
+DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:51880 "POST /session/3536bfb21df4d33e17c1c830c4f8f59a/element HTTP/1.1" 200 0
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:334 Remote response: status=200 | data={"value":{"element-6066-11e4-a52e-4f735466cecf":"f.764E6BA9BF7EBF599116B1BF43C19C98.d.0B1435B3425A6B7F68F7D0759991E036.e.67"}} | headers=HTTPHeaderDict({'Content-Length': '126', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:361 Finished Request
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:305 GET http://localhost:51880/session/3536bfb21df4d33e17c1c830c4f8f59a/element/f.764E6BA9BF7EBF599116B1BF43C19C98.d.0B1435B3425A6B7F68F7D0759991E036.e.67/text {}
+DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:51880 "GET /session/3536bfb21df4d33e17c1c830c4f8f59a/element/f.764E6BA9BF7EBF599116B1BF43C19C98.d.0B1435B3425A6B7F68F7D0759991E036.e.67/text HTTP/1.1" 200 0
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:334 Remote response: status=200 | data={"value":"Сырный борт"} | headers=HTTPHeaderDict({'Content-Length': '33', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:361 Finished Request
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:305 DELETE http://localhost:51880/session/3536bfb21df4d33e17c1c830c4f8f59a {}
+DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:51880 "DELETE /session/3536bfb21df4d33e17c1c830c4f8f59a HTTP/1.1" 200 0
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:334 Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:361 Finished Request

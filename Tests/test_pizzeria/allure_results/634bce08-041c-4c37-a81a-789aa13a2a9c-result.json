@@ -1,0 +1,1 @@
+{"name": "test_3[chromium]", "status": "passed", "parameters": [{"name": "browser_name", "value": "'chromium'"}], "start": 1734621291583, "stop": 1734631565090, "uuid": "353af51a-9b98-4c18-8311-7b9f1508a4f1", "testCaseId": "7926c4c8cdf3465e1b6ba7127d8c01df", "fullName": "Tests.homework.module_7.TestValidate#test_3"}

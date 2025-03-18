@@ -1,0 +1,364 @@
+<html>
+<head>
+<title>final_work.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #2aacb8;}
+.s5 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+final_work.py</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">re</span>
+<span class="s0">import </span><span class="s1">time</span>
+<span class="s0">from </span><span class="s1">winreg </span><span class="s0">import </span><span class="s1">DeleteValue</span>
+<span class="s0">import </span><span class="s1">requests</span>
+<span class="s0">from </span><span class="s1">urllib3</span><span class="s2">.</span><span class="s1">util </span><span class="s0">import </span><span class="s1">proxy</span>
+
+<span class="s0">from </span><span class="s1">src</span><span class="s2">.</span><span class="s1">actions</span><span class="s2">.</span><span class="s1">adds </span><span class="s0">import </span><span class="s1">add_pizza</span>
+<span class="s0">from </span><span class="s1">src</span><span class="s2">.</span><span class="s1">actions</span><span class="s2">.</span><span class="s1">authorization </span><span class="s0">import </span><span class="s1">authorization</span>
+<span class="s0">from </span><span class="s1">src</span><span class="s2">.</span><span class="s1">actions</span><span class="s2">.</span><span class="s1">forms </span><span class="s0">import </span><span class="s1">fill_forms</span>
+<span class="s0">from </span><span class="s1">src</span><span class="s2">.</span><span class="s1">actions</span><span class="s2">.</span><span class="s1">registration </span><span class="s0">import </span><span class="s1">registration</span>
+<span class="s0">import </span><span class="s1">allure</span>
+<span class="s0">import </span><span class="s1">pytest</span>
+<span class="s0">from </span><span class="s1">selenium </span><span class="s0">import </span><span class="s1">webdriver</span>
+<span class="s0">from </span><span class="s1">playwright</span><span class="s2">.</span><span class="s1">sync_api </span><span class="s0">import </span><span class="s1">expect</span>
+<span class="s0">from </span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">webdriver</span><span class="s2">.</span><span class="s1">common</span><span class="s2">.</span><span class="s1">by </span><span class="s0">import </span><span class="s1">By</span>
+<span class="s0">from </span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">webdriver</span><span class="s2">.</span><span class="s1">support </span><span class="s0">import </span><span class="s1">expected_conditions </span><span class="s0">as </span><span class="s1">EC</span>
+<span class="s0">from </span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">webdriver</span><span class="s2">.</span><span class="s1">support </span><span class="s0">import </span><span class="s1">wait</span>
+<span class="s0">from </span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">webdriver</span><span class="s2">.</span><span class="s1">common</span><span class="s2">.</span><span class="s1">keys </span><span class="s0">import </span><span class="s1">Keys</span>
+
+
+<span class="s2">@</span><span class="s1">allure</span><span class="s2">.</span><span class="s1">feature</span><span class="s2">(</span><span class="s3">'Full Accounts'</span><span class="s2">)</span>
+<span class="s2">@</span><span class="s1">allure</span><span class="s2">.</span><span class="s1">story</span><span class="s2">(</span><span class="s3">'Waiting page load'</span><span class="s2">)</span>
+<span class="s0">class </span><span class="s1">TestValidate</span><span class="s2">:</span>
+    <span class="s2">@</span><span class="s1">allure</span><span class="s2">.</span><span class="s1">title</span><span class="s2">(</span><span class="s3">'Проверка загрузки страницы'</span><span class="s2">)</span>
+    <span class="s0">def </span><span class="s1">test_1</span><span class="s2">(</span><span class="s1">self</span><span class="s2">, </span><span class="s1">get_driver</span><span class="s2">):</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Переход на сайт https://pizzeria.skillbox.cc/'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">'https://pizzeria.skillbox.cc/'</span><span class="s2">)</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">5</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Добавить пиццу &quot;Как у бабушки&quot; «В корзину».'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'(//*[contains(@data-product_id, &quot;423&quot;)])[2]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">5</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Добавить пиццу &quot;Рай&quot; «В корзину».'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'(//*[contains(@data-product_id, &quot;421&quot;)])[2]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">5</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Переключить слайдер вправо.'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'//*[contains(@class, &quot;slick-next&quot;)]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">5</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Проверить, что при переключении слайдера вправо пицца &quot;Пепперони&quot; появляется в слайдере.'</span><span class="s2">):</span>
+            <span class="s1">expected_pizza </span><span class="s2">= </span><span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'(//a/h3)[9]'</span><span class="s2">)</span>
+            <span class="s0">assert </span><span class="s3">'ПИЦЦА «ПЕППЕРОНИ»' </span><span class="s0">in </span><span class="s1">expected_pizza</span><span class="s2">.</span><span class="s1">text</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Добавить пиццу &quot;Пепперони&quot; «В корзину».'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'(//*[contains(@data-product_id, &quot;417&quot;)])[2]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">5</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Переключить слайдер влево.'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'//*[contains(@class, &quot;slick-prev&quot;)]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">5</span><span class="s2">)</span>
+
+
+        <span class="s0">pass</span>
+
+    <span class="s0">def </span><span class="s1">test_2</span><span class="s2">(</span><span class="s1">self</span><span class="s2">, </span><span class="s1">get_driver</span><span class="s2">):</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Переход на сайт https://pizzeria.skillbox.cc/'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">'https://pizzeria.skillbox.cc/'</span><span class="s2">)</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Нажать на картинку пиццы «4 в 1» в слайдере.'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'(//*[contains(@title, &quot;Пицца «4 в 1»&quot;)])[1]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Выбрать дополнительную опцию в выпадающем списке &quot;Выбор борта для пиццы&quot; (сырный борт, пицца «4 в 1»)'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">CSS_SELECTOR</span><span class="s2">, </span><span class="s3">'#board_pack'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'//*[contains(@value, &quot;55.00&quot;)]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Нажать на кнопку «В корзину».'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'(//*[contains(@type, &quot;submit&quot;)])[2]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Проверить, что пицца &quot;4 в 1 дополнительно: сырный борт&quot; добавлена в корзину.'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'//*[@class=&quot;cart-contents wcmenucart-contents&quot;]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+            <span class="s1">cheese_board </span><span class="s2">= </span><span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'(//*[@class=&quot;variation-&quot;])[2]'</span><span class="s2">)</span>
+            <span class="s0">assert </span><span class="s3">'Сырный борт' </span><span class="s0">in </span><span class="s1">cheese_board</span><span class="s2">.</span><span class="s1">text</span>
+        <span class="s0">pass</span>
+
+    <span class="s0">def </span><span class="s1">test_3</span><span class="s2">(</span><span class="s1">self</span><span class="s2">, </span><span class="s1">get_driver</span><span class="s2">):</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Переход на сайт https://pizzeria.skillbox.cc/'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">'https://pizzeria.skillbox.cc/'</span><span class="s2">)</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Добавить пиццу &quot;Рай&quot; «В корзину».'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'(//*[contains(@data-product_id, &quot;421&quot;)])[2]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Нажать «Корзина».'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'//*[@class=&quot;cart-contents wcmenucart-contents&quot;]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Нажать на кнопку &quot;Кол-во&quot; и увеличить на +1.'</span><span class="s2">):</span>
+            <span class="s1">expected_value </span><span class="s2">= </span><span class="s3">'2'</span>
+            <span class="s1">el </span><span class="s2">= </span><span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'(//div/input)[1]'</span><span class="s2">)</span>
+            <span class="s1">el</span><span class="s2">.</span><span class="s1">clear</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+            <span class="s1">el</span><span class="s2">.</span><span class="s1">send_keys</span><span class="s2">(</span><span class="s1">expected_value</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Нажать на кнопку «Обновить корзину».'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'(//*[@class=&quot;button&quot;])[2]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Проверить, что количество пиццы &quot;Рай&quot; в &quot;Корзине&quot; = 2.'</span><span class="s2">):</span>
+            <span class="s1">el_2 </span><span class="s2">= </span><span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'//*[@value=&quot;2&quot;]'</span><span class="s2">)</span>
+            <span class="s0">assert </span><span class="s1">el_2</span><span class="s2">.</span><span class="s1">get_attribute</span><span class="s2">(</span><span class="s3">'value'</span><span class="s2">) == </span><span class="s3">'2'</span>
+
+        <span class="s0">pass</span>
+
+    <span class="s0">def </span><span class="s1">test_4</span><span class="s2">(</span><span class="s1">self</span><span class="s2">, </span><span class="s1">get_driver</span><span class="s2">):</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Переход на страницу https://pizzeria.skillbox.cc/'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">'https://pizzeria.skillbox.cc/'</span><span class="s2">)</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Добавить пиццу &quot;Ветчина и грибы&quot; в &quot;Корзину&quot;'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'(//*[contains(@data-product_id, &quot;419&quot;)])[2]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Перейти в &quot;Корзину&quot;'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'//*[@class=&quot;cart-contents wcmenucart-contents&quot;]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Нажать &quot;Удалить&quot; пиццу &quot;Ветчина и грибы&quot; из &quot;Корзина&quot;'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'//*[@class=&quot;remove&quot;]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Проверить, что &quot;Корзина пуста&quot;'</span><span class="s2">):</span>
+            <span class="s1">cart </span><span class="s2">= </span><span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'//*[@class=&quot;cart-empty woocommerce-info&quot;]'</span><span class="s2">)</span>
+            <span class="s0">assert </span><span class="s3">'Корзина пуста.' </span><span class="s0">in </span><span class="s1">cart</span><span class="s2">.</span><span class="s1">text</span>
+
+        <span class="s0">pass</span>
+
+    <span class="s0">def </span><span class="s1">test_5</span><span class="s2">(</span><span class="s1">self</span><span class="s2">, </span><span class="s1">get_driver</span><span class="s2">):</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Переход на страницу https://pizzeria.skillbox.cc/'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">'https://pizzeria.skillbox.cc/'</span><span class="s2">)</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Нажать на раздел &quot;Меню&quot;'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'(//ul/li/a)[2]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Выбрать в выпадающем списке раздел «Десерты».'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'(//*[contains(text(), &quot;Десерты&quot;)])[2]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'В блоке &quot;Фильтровать по цене&quot; сместить правую кнопку фильтра влево на отметку 130.'</span><span class="s2">):</span>
+            <span class="s1">el </span><span class="s2">= </span><span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'(//*[@class=&quot;ui-slider-handle ui-state-default ui-corner-all&quot;])[2]'</span><span class="s2">)</span>
+            <span class="s1">action_chains </span><span class="s2">= </span><span class="s1">webdriver</span><span class="s2">.</span><span class="s1">ActionChains</span><span class="s2">(</span><span class="s1">get_driver</span><span class="s2">)</span>
+            <span class="s1">action_chains \</span>
+                <span class="s2">.</span><span class="s1">click_and_hold</span><span class="s2">(</span><span class="s1">el</span><span class="s2">) </span><span class="s1">\</span>
+                <span class="s2">.</span><span class="s1">move_by_offset</span><span class="s2">(</span><span class="s1">xoffset</span><span class="s2">=-</span><span class="s4">200</span><span class="s2">, </span><span class="s1">yoffset</span><span class="s2">=</span><span class="s4">0</span><span class="s2">) </span><span class="s1">\</span>
+                <span class="s2">.</span><span class="s1">perform</span><span class="s2">()</span>
+            <span class="s1">action_chains</span><span class="s2">.</span><span class="s1">release</span><span class="s2">().</span><span class="s1">perform</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Нажать &quot;Применить&quot;'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'(//div/div/button)[2]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Добавить &quot;В корзину&quot; десерт «Булочка с корицей»'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'(//div/div/a)[9]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Проверить, что в списке цена за товар не превышает 130 рублей'</span><span class="s2">):</span>
+            <span class="s1">price </span><span class="s2">= </span><span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'//*[@class=&quot;to&quot;]'</span><span class="s2">)</span>
+            <span class="s0">assert </span><span class="s3">'130₽' </span><span class="s0">in </span><span class="s1">price</span><span class="s2">.</span><span class="s1">text</span>
+
+        <span class="s0">pass</span>
+
+    <span class="s0">def </span><span class="s1">test_6</span><span class="s2">(</span><span class="s1">self</span><span class="s2">, </span><span class="s1">get_driver</span><span class="s2">):</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Переход на страницу https://pizzeria.skillbox.cc/'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">'https://pizzeria.skillbox.cc/'</span><span class="s2">)</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Добавить пиццу &quot;Ветчина и грибы&quot; в &quot;Корзину&quot;'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'(//*[contains(@data-product_id, &quot;419&quot;)])[2]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Перейти в &quot;Корзину&quot;'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'//*[@class=&quot;cart-contents wcmenucart-contents&quot;]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Нажать на кнопку «Перейти к оплате».'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'//*[contains(text(), &quot;ПЕРЕЙТИ К ОПЛАТЕ&quot;)]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Проверить, что отображается надпись &quot;Авторизуйтесь.&quot;'</span><span class="s2">):</span>
+            <span class="s1">aut </span><span class="s2">= </span><span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">CSS_SELECTOR</span><span class="s2">, </span><span class="s3">'.showlogin'</span><span class="s2">)</span>
+            <span class="s0">assert </span><span class="s3">'Авторизуйтесь' </span><span class="s0">in </span><span class="s1">aut</span><span class="s2">.</span><span class="s1">text</span>
+
+        <span class="s0">pass</span>
+
+    <span class="s0">def </span><span class="s1">test_7</span><span class="s2">(</span><span class="s1">self</span><span class="s2">, </span><span class="s1">get_driver</span><span class="s2">):</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Зарегистрироваться на сайте'</span><span class="s2">):</span>
+            <span class="s1">registration</span><span class="s2">(</span><span class="s1">self</span><span class="s2">, </span><span class="s1">get_driver</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Перейти во вкладку «Мой аккаунт».'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'(//ul/li/a)[10]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Проверить, что на странице &quot;Мой аккаунт&quot; отображается информация &quot;Привет Andrey5&quot;'</span><span class="s2">):</span>
+            <span class="s1">user_name </span><span class="s2">= </span><span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'(//div/p/strong)[1]'</span><span class="s2">)</span>
+            <span class="s0">assert </span><span class="s3">'Andrey5' </span><span class="s0">in </span><span class="s1">user_name</span><span class="s2">.</span><span class="s1">text</span>
+
+        <span class="s0">pass</span>
+
+    <span class="s0">def </span><span class="s1">test_8</span><span class="s2">(</span><span class="s1">self</span><span class="s2">, </span><span class="s1">get_driver</span><span class="s2">):</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Авторизоваться на сайте'</span><span class="s2">):</span>
+            <span class="s1">authorization</span><span class="s2">(</span><span class="s1">get_driver</span><span class="s2">)</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Перейти в &quot;Корзину&quot;'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'//*[@class=&quot;cart-contents wcmenucart-contents&quot;]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Заполнение форм данными'</span><span class="s2">):</span>
+            <span class="s1">fill_forms</span><span class="s2">(</span><span class="s1">get_driver</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'В поле &quot;Дата заказа&quot; выбрать &quot;На завтра&quot;'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">CSS_SELECTOR</span><span class="s2">, </span><span class="s3">'#order_date'</span><span class="s2">).</span><span class="s1">send_keys</span><span class="s2">(</span><span class="s3">'14.01.2025'</span><span class="s2">)</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Нажать radio-button &quot;Оплата при доставке&quot;'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">CSS_SELECTOR</span><span class="s2">, </span><span class="s3">'#payment_method_cod'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Нажать чек-бокс &quot;I have read and agree to the website terms and conditions&quot;'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">CSS_SELECTOR</span><span class="s2">, </span><span class="s3">'#terms'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Нажать &quot;Оформить заказ&quot;'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">CSS_SELECTOR</span><span class="s2">, </span><span class="s3">'#place_order'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Проверить, что на странице &quot;Заказ получен&quot; отображаются веденные данные'</span><span class="s2">):</span>
+            <span class="s1">address_check </span><span class="s2">= </span><span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'//section/address'</span><span class="s2">)</span>
+            <span class="s0">assert </span><span class="s2">(</span><span class="s3">'Андрей Андреев</span><span class="s0">\n</span><span class="s3">'</span>
+                <span class="s3">'ул. Пушкина 13, кв. 47</span><span class="s0">\n</span><span class="s3">'</span>
+                <span class="s3">'Москва</span><span class="s0">\n</span><span class="s3">'</span>
+                <span class="s3">'Московская</span><span class="s0">\n</span><span class="s3">'</span>
+                <span class="s3">'108811</span><span class="s0">\n</span><span class="s3">'</span>
+                <span class="s3">'+79971234567</span><span class="s0">\n</span><span class="s3">'</span>
+                <span class="s3">'andrey5@pizza.ru'</span><span class="s2">) </span><span class="s0">in </span><span class="s1">address_check</span><span class="s2">.</span><span class="s1">text</span>
+
+        <span class="s0">pass</span>
+
+    <span class="s0">def </span><span class="s1">test_apply_promo_code_1</span><span class="s2">(</span><span class="s1">self</span><span class="s2">, </span><span class="s1">get_driver</span><span class="s2">):</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Переход на страницу https://pizzeria.skillbox.cc/'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">'https://pizzeria.skillbox.cc/'</span><span class="s2">)</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Добавить пиццу &quot;Ветчина и грибы&quot; в &quot;Корзину&quot;'</span><span class="s2">):</span>
+            <span class="s1">add_pizza</span><span class="s2">(</span><span class="s1">get_driver</span><span class="s2">)</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Перейдите в окно оформления товаров.'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'//*[@class=&quot;cart-contents wcmenucart-contents&quot;]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Примените промокод GIVEMEHALYAVA.'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">CSS_SELECTOR</span><span class="s2">, </span><span class="s3">'#coupon_code'</span><span class="s2">).</span><span class="s1">send_keys</span><span class="s2">(</span><span class="s3">'GIVEMEHALYAVA'</span><span class="s2">)</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Нажать &quot;Применить купон&quot;'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'//*[@value=&quot;Применить купон&quot;]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Убедитесь, что конечная сумма заказа уменьшилась на 10%.'</span><span class="s2">):</span>
+            <span class="s1">price </span><span class="s2">= </span><span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'(//span/bdi)[4]'</span><span class="s2">)</span>
+            <span class="s0">assert </span><span class="s3">'405,00' </span><span class="s0">in </span><span class="s1">price</span><span class="s2">.</span><span class="s1">text</span>
+
+        <span class="s0">pass</span>
+
+    <span class="s0">def </span><span class="s1">test_apply_promo_code_2</span><span class="s2">(</span><span class="s1">self</span><span class="s2">, </span><span class="s1">get_driver</span><span class="s2">):</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Переход на страницу https://pizzeria.skillbox.cc/'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">'https://pizzeria.skillbox.cc/'</span><span class="s2">)</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Добавить пиццу &quot;Ветчина и грибы&quot; в &quot;Корзину&quot;'</span><span class="s2">):</span>
+            <span class="s1">add_pizza</span><span class="s2">(</span><span class="s1">get_driver</span><span class="s2">)</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Перейдите в окно оформления товаров.'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'//*[@class=&quot;cart-contents wcmenucart-contents&quot;]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Примените промокод DC120.'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">CSS_SELECTOR</span><span class="s2">, </span><span class="s3">'#coupon_code'</span><span class="s2">).</span><span class="s1">send_keys</span><span class="s2">(</span><span class="s3">'DC120'</span><span class="s2">)</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Нажать &quot;Применить купон&quot;'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'//*[@value=&quot;Применить купон&quot;]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Убедитесь, что конечная сумма заказа НЕ уменьшилась на 10%.'</span><span class="s2">):</span>
+            <span class="s1">price </span><span class="s2">= </span><span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'(//span/bdi)[4]'</span><span class="s2">)</span>
+            <span class="s0">assert </span><span class="s3">'450,00' </span><span class="s0">in </span><span class="s1">price</span><span class="s2">.</span><span class="s1">text</span>
+
+        <span class="s0">pass</span>
+
+    <span class="s0">def </span><span class="s1">test_apply_promo_code_3</span><span class="s2">(</span><span class="s1">self</span><span class="s2">, </span><span class="s1">get_driver</span><span class="s2">):</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Переход на страницу https://pizzeria.skillbox.cc/'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">'https://pizzeria.skillbox.cc/'</span><span class="s2">)</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Добавить пиццу &quot;Ветчина и грибы&quot; в &quot;Корзину&quot;'</span><span class="s2">):</span>
+            <span class="s1">add_pizza</span><span class="s2">(</span><span class="s1">get_driver</span><span class="s2">)</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Перейдите в окно оформления товаров.'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'//*[@class=&quot;cart-contents wcmenucart-contents&quot;]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Примените промокод GIVEMEHALYAVA.'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">CSS_SELECTOR</span><span class="s2">, </span><span class="s3">'#coupon_code'</span><span class="s2">).</span><span class="s1">send_keys</span><span class="s2">(</span><span class="s3">'GIVEMEHALYAVA'</span><span class="s2">)</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+            <span class="s0">return </span><span class="s3">'https://pizzeria.skillbox.cc/'</span><span class="s2">, </span><span class="s4">500</span>
+        <span class="s5"># with allure.step('Перехватите запрос, уходящий с веба на сервер, и заблокируйте его. Вернуть ответ с ошибкой (500).'):</span>
+        <span class="s5">#     # noinspection PyTypeChecker</span>
+        <span class="s5">#     # requests.get('https://pizzeria.skillbox.cc/cart/', 500)</span>
+        <span class="s5">#     return 'https://pizzeria.skillbox.cc/', 500</span>
+
+        <span class="s0">pass</span>
+
+    <span class="s0">def </span><span class="s1">test_apply_promo_code_4</span><span class="s2">(</span><span class="s1">self</span><span class="s2">, </span><span class="s1">get_driver</span><span class="s2">):</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Авторизоваться на сайте'</span><span class="s2">):</span>
+            <span class="s1">authorization</span><span class="s2">(</span><span class="s1">get_driver</span><span class="s2">)</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Добавить пиццу &quot;Ветчина и грибы&quot; в &quot;Корзину&quot;'</span><span class="s2">):</span>
+            <span class="s1">add_pizza</span><span class="s2">(</span><span class="s1">get_driver</span><span class="s2">)</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Примените промокод GIVEMEHALYAVA.'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">CSS_SELECTOR</span><span class="s2">, </span><span class="s3">'#coupon_code'</span><span class="s2">).</span><span class="s1">send_keys</span><span class="s2">(</span><span class="s3">'GIVEMEHALYAVA'</span><span class="s2">)</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Нажать &quot;Применить купон&quot;'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'//*[@value=&quot;Применить купон&quot;]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Нажать &quot;Прейти к оплате&quot;'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'//*[@class=&quot;checkout-button button alt wc-forward&quot;]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Нажать чек-бокс &quot;I have read and agree to the website terms and conditions&quot;'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'//*[@id=&quot;terms&quot;]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Нажать &quot;Оформить заказ&quot;'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">CSS_SELECTOR</span><span class="s2">, </span><span class="s3">'#place_order'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Добавить пиццу &quot;Ветчина и грибы&quot; в &quot;Корзину&quot;'</span><span class="s2">):</span>
+            <span class="s1">add_pizza</span><span class="s2">(</span><span class="s1">get_driver</span><span class="s2">)</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Очистить поле &quot;Промокод&quot;'</span><span class="s2">):</span>
+            <span class="s1">el </span><span class="s2">= </span><span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">CSS_SELECTOR</span><span class="s2">, </span><span class="s3">'#coupon_code'</span><span class="s2">)</span>
+            <span class="s1">el</span><span class="s2">.</span><span class="s1">clear</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Примените промокод GIVEMEHALYAVA.'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">CSS_SELECTOR</span><span class="s2">, </span><span class="s3">'#coupon_code'</span><span class="s2">).</span><span class="s1">send_keys</span><span class="s2">(</span><span class="s3">'GIVEMEHALYAVA'</span><span class="s2">)</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Нажать &quot;Применить купон&quot;'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'//*[@value=&quot;Применить купон&quot;]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Проверить, что второй раз промокод уже не срабатывает для пользователя.'</span><span class="s2">):</span>
+            <span class="s1">coupon </span><span class="s2">= </span><span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'//*[@role=&quot;alert&quot;]'</span><span class="s2">)</span>
+            <span class="s0">assert </span><span class="s3">'Coupon code already applied!' </span><span class="s0">in </span><span class="s1">coupon</span><span class="s2">.</span><span class="s1">text</span>
+
+        <span class="s0">pass</span>
+
+    <span class="s0">def </span><span class="s1">test_bonus_program_1</span><span class="s2">(</span><span class="s1">self</span><span class="s2">, </span><span class="s1">get_driver</span><span class="s2">):</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Перейдите на страницу бонусной программы: https://pizzeria.skillbox.cc/bonus/'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">'https://pizzeria.skillbox.cc/bonus/'</span><span class="s2">)</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Ввести &quot;Андрей&quot; в поле &quot;Имя&quot;'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">CSS_SELECTOR</span><span class="s2">, </span><span class="s3">'#bonus_username'</span><span class="s2">).</span><span class="s1">send_keys</span><span class="s2">(</span><span class="s3">'Андрей'</span><span class="s2">)</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Ввести +79971234567 в поле &quot;Телефон&quot;'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">CSS_SELECTOR</span><span class="s2">, </span><span class="s3">'#bonus_phone'</span><span class="s2">).</span><span class="s1">send_keys</span><span class="s2">(</span><span class="s3">'+79971234567'</span><span class="s2">)</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+        <span class="s0">with </span><span class="s1">allure</span><span class="s2">.</span><span class="s1">step</span><span class="s2">(</span><span class="s3">'Нажать &quot;Оформить карту&quot;'</span><span class="s2">):</span>
+            <span class="s1">get_driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">'//*[@style=&quot;cursor:pointer;&quot;]'</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+
+            <span class="s1">action_chains </span><span class="s2">= </span><span class="s1">webdriver</span><span class="s2">.</span><span class="s1">Action</span><span class="s2">.</span><span class="s1">Chains</span><span class="s2">(</span><span class="s1">get_driver</span><span class="s2">)</span>
+            <span class="s1">action_chains</span><span class="s2">.</span>
+            <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3</span><span class="s2">)</span>
+
+
+
+
+
+
+
+
+</pre>
+</body>
+</html>
